@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eremax Performance Gummies | Tu plan de rendimiento</title>
+  <meta name="description" content="Tu plan de rendimiento personalizado con Eremax." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/oferta.css" />
+  <!-- Pixel / GTM / RedTrack: pega tus scripts aquí -->
+</head>
+<body class="pdp">
+  <!-- Barra Black Friday -->
+  <div class="sale-banner">
+    <div class="sale-banner__content">
+      <p class="sale-banner__heading">BLACK FRIDAY</p>
+      <div class="sale-banner__gold">AHORRA 70% + REGALOS</div>
+    </div>
+    <div class="sale-banner__timer" aria-label="Cuenta regresiva">
+      <div class="timer-part"><strong id="cd-h">02</strong><span>Hrs</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-m">00</strong><span>Min</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-s">00</strong><span>Seg</span></div>
+    </div>
+  </div>
+
+  <!-- Encabezado -->
+  <header class="pdp-header">
+    <button class="icon-btn" id="menuBtn" aria-label="Menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="quiz-logo" id="logo"></div>
+    <button class="icon-btn" id="cartBtn" aria-label="Carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    </button>
+  </header>
+  <nav class="side-menu" id="sideMenu">
+    <button class="icon-btn close" id="menuClose" aria-label="Cerrar">✕</button>
+    <a href="#bundles">Comprar ahora</a>
+    <a href="#ingredientes">Ingredientes</a>
+    <a href="#resenas">Reseñas</a>
+    <a href="#faq">Preguntas frecuentes</a>
+    <a href="mailto:support@eremax.com">Contacto</a>
+  </nav>
+
+  <main class="pdp-main">
+    <!-- Perfil + valoración -->
+    <div class="profile-pill"><span class="dot"></span>Perfil compatible: aquí está tu plan de rendimiento</div>
+    <div class="rating-pill" id="ratingPill"></div>
+
+    <!-- Galería -->
+    <section class="gallery">
+      <div class="gallery-main" id="galleryMain"></div>
+      <button class="g-arrow prev" id="gPrev" aria-label="Anterior">‹</button>
+      <button class="g-arrow next" id="gNext" aria-label="Siguiente">›</button>
+    </section>
+    <div class="thumbs" id="thumbs"></div>
+
+    <!-- Información del producto -->
+    <section class="product-info">
+      <h1 class="product-title" id="pTitle"></h1>
+      <p class="product-sub" id="pSub"></p>
+      <ul class="benefits" id="benefits"></ul>
+      <button class="facts-link" id="factsBtn">Información nutricional</button>
+
+      <h3 class="choose" id="bundles">Elige tu paquete:</h3>
+      <div class="bundles" id="bundleList"></div>
+
+      <p class="delivery"><span class="pulse-dot"></span>Pide hoy y recíbelo el <u id="deliveryDate"></u></p>
+
+      <a class="atc" id="atcBtn" href="#">Agregar al carrito <span class="atc-sep">|</span> <b id="atcPrice"></b> <s id="atcCompare"></s></a>
+      <p class="sub-note" id="subNote"></p>
+
+      <div class="guarantee-box">
+        <div class="g-seal"><b id="gDays">60</b><small>DÍAS</small></div>
+        <div>
+          <h4>Ella nota la diferencia o te devolvemos tu dinero</h4>
+          <p>Pruébalo durante <span class="gdays"></span> días. Si no notas la diferencia, te devolvemos el 100% de tu compra. Así de seguros estamos.</p>
+        </div>
+      </div>
+
+      <!-- Pestañas -->
+      <div class="tabs" id="tabs"></div>
+      <div class="tab-panel" id="tabPanel"></div>
+    </section>
+
+    <!-- Opinión experta (solo si configuras config.oferta.expert) -->
+    <section class="expert-section" id="expertSection" hidden></section>
+
+    <!-- Línea de tiempo -->
+    <section class="timeline-section">
+      <h2 class="sec-title">QUÉ ESPERAR: TU LÍNEA DE TIEMPO</h2>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-icon">⚡</div><div><span class="tl-day">DÍA 7</span><h4>Arranque</h4>
+          <ul><li>Creas el hábito de una gomita al día</li><li>Muchos hombres notan primero más energía</li><li>Empiezas a prestar atención a tu deseo</li></ul></div></div>
+        <div class="tl-item"><div class="tl-icon">🔥</div><div><span class="tl-day">DÍA 30</span><h4>Ella lo nota</h4>
+          <ul><li>Tu rutina ya es constante</li><li>Te sientes con más confianza en la cama</li><li>Más ganas de buscarla</li></ul></div></div>
+        <div class="tl-item"><div class="tl-icon">👑</div><div><span class="tl-day">DÍA 90</span><h4>Tu nueva normalidad</h4>
+          <ul><li>Completaste el plan de 12 semanas</li><li>Compara cómo te sientes frente al día 1</li><li>Mantén la rutina para seguir en tu mejor nivel</li></ul></div></div>
+      </div>
+      <p class="tl-note">Los resultados varían de persona a persona.</p>
+    </section>
+
+    <!-- Para ti si... -->
+    <section class="for-you">
+      <h2 class="sec-title"><span id="brandUpper"></span> ES<br>PARA TI SI...</h2>
+      <ul class="for-list">
+        <li>Ya no tienes erecciones tan firmes como antes</li>
+        <li>Sientes que perdiste el deseo</li>
+        <li>Pierdes la erección a mitad del camino o te cuesta mantenerla</li>
+        <li>Notas que ya no rindes como a los 20</li>
+        <li>Probaste otras soluciones y no funcionaron, tuvieron efectos secundarios o creaste dependencia</li>
+        <li>Quieres apoyar tu circulación de forma natural, sin depender de calcular la hora de una pastilla</li>
+      </ul>
+    </section>
+
+    <!-- Ingredientes -->
+    <section class="ingredients-section" id="ingredientes">
+      <h2 class="sec-title">INGREDIENTES PODEROSOS PARA TU MEJOR RENDIMIENTO</h2>
+      <div class="ing-grid" id="ingGrid"></div>
+      <a class="atc shop-now" href="#bundles">COMPRAR AHORA</a>
+      <div class="trust-badges" id="trustBadges"></div>
+    </section>
+
+    <!-- Reseñas -->
+    <section class="reviews-section" id="resenas">
+      <h2 class="sec-title" id="reviewsTitle"></h2>
+      <div class="reviews" id="reviews"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <h2 class="sec-title">PREGUNTAS FRECUENTES</h2>
+      <div class="faq-list">
+        <details open><summary>¿En cuánto tiempo notaré la diferencia?</summary><p>Cada persona es diferente. Muchos hombres notan primero un cambio en su energía; recomendamos seguir la rutina de forma constante durante el plan completo de 12 semanas. La constancia lo es todo: una gomita, todos los días.</p></details>
+        <details><summary>¿Qué lo hace diferente de un shilajit o una maca baratos?</summary><p>Combina varios ingredientes en una sola gomita diaria, en lugar de un solo ingrediente aislado, para apoyar varios aspectos a la vez: circulación, energía, deseo y manejo del estrés.</p></details>
+        <details><summary>¿Mi pareja lo va a notar?</summary><p>No tiene olor ni deja rastro: es una gomita al día. Lo que cada persona note dependerá de su experiencia.</p></details>
+        <details><summary>¿Necesito receta? ¿Es como la pastillita azul?</summary><p>No necesitas receta: es un suplemento alimenticio, no un medicamento, y no reemplaza ningún tratamiento indicado por tu médico.</p></details>
+        <details><summary>¿Tiene efectos secundarios?</summary><p>Está hecho con ingredientes naturales, pero cada cuerpo es diferente. Si tomas medicamentos, tienes una condición médica o tienes dudas, consulta a tu médico antes de usarlo.</p></details>
+        <details><summary>¿Y si no me funciona?</summary><p>Tienes nuestra garantía de devolución: si no estás satisfecho dentro del período de garantía, contáctanos y te devolvemos el 100% de tu compra.</p></details>
+        <details><summary>¿Cuántas tomo y cuándo?</summary><p>Una gomita al día, a la hora que te resulte más fácil de recordar. Sigue siempre las indicaciones de la etiqueta.</p></details>
+        <details><summary>¿Por cuánto tiempo debo tomarlo?</summary><p>Recomendamos completar al menos el plan de 12 semanas y luego mantener la rutina para seguir en tu mejor nivel.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="pdp-footer">
+    <div class="f-col">
+      <div class="f-logo" id="footLogo"></div>
+      <p>En <span class="brand"></span> la calidad y la confianza son nuestra prioridad. ¿Tienes preguntas? Estamos aquí para ayudarte.</p>
+      <form class="subscribe" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Listo!';">
+        <input type="email" placeholder="E-mail" required><button>Suscribirme</button>
+      </form>
+    </div>
+    <div class="f-col">
+      <h5>Nuestras políticas</h5>
+      <a href="../legal/terms.html">Términos y condiciones</a>
+      <a href="../legal/refund.html">Política de reembolso</a>
+      <a href="../legal/privacy.html">Política de privacidad</a>
+      <a href="../legal/shipping.html">Política de envío</a>
+    </div>
+    <div class="f-col">
+      <h5>Enlaces útiles</h5>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#bundles">Comprar ahora</a>
+      <a id="mailLink" href="#">Contacto</a>
+    </div>
+    <div class="f-col" id="companyBox"></div>
+    <p class="f-disclaimer">*AVISO MÉDICO Y DE SALUD: Los resultados pueden variar. El contenido y los productos presentados aquí no están destinados a diagnosticar, tratar, curar ni prevenir ninguna enfermedad. Esta oferta no reemplaza medicamentos ni tratamientos indicados por un médico o profesional de la salud. Recomendamos consultar a un médico antes de usar cualquier producto o seguir cualquier recomendación de esta página. La FDA no ha evaluado estas declaraciones.</p>
+    <p class="f-copy">© <span id="year"></span>, <span class="brand"></span>.</p>
+  </footer>
+
+  <!-- Barra fija de compra (móvil) -->
+  <div class="sticky-atc" id="stickyAtc">
+    <div><b id="stickyTitle"></b><span id="stickyPrice"></span></div>
+    <a class="atc" id="stickyBtn" href="#">Agregar al carrito</a>
+  </div>
+
+  <!-- Modal de información nutricional -->
+  <div class="facts-modal" id="factsModal"><div class="facts-box"><button class="icon-btn close" id="factsClose">✕</button><div id="factsImg"></div></div></div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/illustrations.js"></script>
+  <script src="../assets/js/oferta.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz: Encuentra tu apoyo de rendimiento | Eremax</title>
+  <meta name="description" content="Responde el quiz de 60 segundos y recibe tu plan de rendimiento personalizado." />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Quiz: Encuentra tu apoyo de rendimiento | Eremax" />
+  <meta property="og:description" content="Responde el quiz de 60 segundos y recibe tu plan personalizado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/quiz.css" />
+  <!-- Pixel / GTM / RedTrack: pega tus scripts aquí -->
+</head>
+<body>
+  <div class="sale-banner">
+    <div class="sale-banner__content">
+      <p class="sale-banner__heading">BLACK FRIDAY</p>
+      <div class="sale-banner__gold">AHORRA 70% + REGALOS</div>
+    </div>
+    <div class="sale-banner__timer" aria-label="Cuenta regresiva">
+      <div class="timer-part"><strong id="cd-h">02</strong><span>Hrs</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-m">00</strong><span>Min</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-s">00</strong><span>Seg</span></div>
+    </div>
+  </div>
+
+  <div class="quiz-wrapper" id="quiz">
+    <div class="quiz-logo" id="logo"></div>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <button class="back-btn" id="backBtn" aria-label="Volver">&#8592;</button>
+    <div id="stepHost" class="step-host"></div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-text" id="modalText"></div>
+      <div class="modal-buttons">
+        <button class="modal-btn" data-answer="no">No</button>
+        <button class="modal-btn" data-answer="si">Sí</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/illustrations.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>

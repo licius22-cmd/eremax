@@ -6,12 +6,18 @@
   var S = 'fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
 
   var icons = {
-    stopwatch: '<svg viewBox="0 0 32 32" ' + S + '><circle cx="16" cy="18" r="10"/><path d="M13 4h6M16 4v4M24 10l2-2"/><path d="M16 12v6l4 3"/><path d="M11 21l2-4 2 3 2-5" stroke-width="1.2"/></svg>',
-    down: '<svg viewBox="0 0 32 32" ' + S + '><path d="M25 7L9 23"/><path d="M9 14v9h9"/><path d="M22 4l6 6" /></svg>',
-    wave: '<svg viewBox="0 0 32 32" ' + S + '><path d="M4 12l3-4 3 4"/><path d="M7 8v8c0 4 3 6 6 4l4-3c3-2 6 0 8 3l2 3"/><path d="M27 21v4h-4"/></svg>',
-    gauge: '<svg viewBox="0 0 32 32" ' + S + '><path d="M5 20a11 11 0 1 1 22 0"/><path d="M16 20l-5-6"/><circle cx="16" cy="20" r="1.6"/><path d="M8 13l1.5 1M24 13l-1.5 1M16 9v2"/><path d="M13 27h6M16 24v3"/></svg>',
-    grid: '<svg viewBox="0 0 32 32" ' + S + '><circle cx="16" cy="16" r="12"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg>',
-    peak: '<svg viewBox="0 0 32 32" ' + S + '><path d="M3 27l9-13 5 7 3-4 9 10"/><path d="M16 4v12M12 8l4-4 4 4"/></svg>',
+    // Stopwatch with a lightning bolt inside
+    stopwatch: '<svg viewBox="0 0 32 32" ' + S + '><circle cx="16" cy="18.5" r="10.5"/><circle cx="16" cy="18.5" r="8" stroke-width="1"/><path d="M13.5 4.5h5M16 4.5v3.5"/><path d="M24.5 9.5l2-2M7.5 9.5l-2-2"/><path d="M17 12.5l-4 7h3.5l-1.5 5.5 5-8h-3.6l1.6-4.5z" stroke-width="1.3"/></svg>',
+    // Diagonal arrow pointing down-left, broken in the middle
+    down: '<svg viewBox="0 0 32 32" ' + S + '><path d="M27 5l-6 6"/><path d="M21 11l2 3-5-1 2 3-11 10"/><path d="M6 19v7h7"/><path d="M25 3l4 4" stroke-width="1.2"/></svg>',
+    // Arrow up on the left that drops into a wave and ends pointing right
+    wave: '<svg viewBox="0 0 32 32" ' + S + '><path d="M3 13l4-4 4 4"/><path d="M7 9v6c0 3 2 5 5 3l3-2c3-2 5-1 7 1l4 3"/><path d="M23 22.5l3.5-1.5-.8 3.8"/></svg>',
+    // Gauge (low) with a small flame underneath
+    gauge: '<svg viewBox="0 0 32 32" ' + S + '><path d="M4.5 17a11.5 11.5 0 0 1 23 0"/><path d="M8 17h-1.5M25.5 17H24M9 10.5l1 1M23 10.5l-1 1M16 6.5V8"/><path d="M16 17l-6-3.5"/><circle cx="16" cy="17" r="1.5"/><path d="M16 21c-2 2-2.5 3.4-2.5 4.6a2.5 2.5 0 0 0 5 0c0-1.2-.6-2.6-2.5-4.6z"/><path d="M12.5 29.5h7"/></svg>',
+    // Circle with four small boxes (mix of everything)
+    grid: '<svg viewBox="0 0 32 32" ' + S + '><circle cx="16" cy="16" r="13"/><circle cx="16" cy="16" r="10" stroke-width="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/><path d="M11.5 12.5h2M19.5 11v3M11 19.5l3 0M18.5 19.5l2 0"/></svg>',
+    // Mountain with an arrow rising from the summit
+    peak: '<svg viewBox="0 0 32 32" ' + S + '><path d="M2.5 28l8.5-12 4 5 2-3 3 4 3-3 6 9"/><path d="M11 16l-2 4M17 18v-14"/><path d="M13.5 7.5L17 4l3.5 3.5"/></svg>',
     pulse: '<svg viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
     bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
     target: '<svg viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
@@ -25,7 +31,6 @@
     var glasses = i >= 3;
     var skin = "#e9c3a2", shade = "#d9a984", shirt = "#3b2a22";
     return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">' +
-      '<rect width="200" height="200" fill="#fff"/>' +
       '<path d="M22 200c4-40 30-56 60-62h36c30 6 56 22 60 62z" fill="' + shirt + '"/>' +
       '<path d="M84 124h32v20c-6 8-26 8-32 0z" fill="' + shade + '"/>' +
       '<path d="M80 140c8 10 32 10 40 0" stroke="#2a1d17" stroke-width="3" fill="none"/>' +
@@ -57,12 +62,12 @@
     }
     return '<svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" font-family="Montserrat, sans-serif">' +
       '<rect width="340" height="300" rx="14" fill="#fff"/>' +
-      '<text x="85" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#999">BEFORE</text>' +
-      '<text x="255" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#C98E4A">WITH A ROUTINE</text>' +
+      '<text x="85" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#999">ANTES</text>' +
+      '<text x="255" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#C98E4A">CON LA RUTINA</text>' +
       '<line x1="170" y1="56" x2="170" y2="262" stroke="#eee" stroke-width="2"/>' +
       bars(36, [40, 55, 35], "#d9d9d9") + bars(206, [110, 150, 180], "#C98E4A") +
-      '<text x="85" y="280" text-anchor="middle" font-size="11" fill="#888">Energy · Drive · Confidence</text>' +
-      '<text x="255" y="280" text-anchor="middle" font-size="11" fill="#888">Energy · Drive · Confidence</text></svg>';
+      '<text x="85" y="280" text-anchor="middle" font-size="11" fill="#888">Energía · Deseo · Confianza</text>' +
+      '<text x="255" y="280" text-anchor="middle" font-size="11" fill="#888">Energía · Deseo · Confianza</text></svg>';
   }
 
   window.EREMAX_ASSETS = { icons: icons, portrait: portrait, placeholder: placeholder, transformation: transformation };

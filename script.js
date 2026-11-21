@@ -4,69 +4,75 @@
   var host = document.getElementById("stepHost");
   var fill = document.getElementById("progressFill");
   var backBtn = document.getElementById("backBtn");
-  document.getElementById("year").textContent = new Date().getFullYear();
 
   /* ---------- logo ---------- */
   document.getElementById("logo").innerHTML = C.images.logo
     ? '<img src="' + C.images.logo + '" alt="' + C.brand + '">'
     : I.logo + '<span class="logo-word">' + C.brand + "</span>";
 
-  /* ---------- steps ---------- */
+  /* ---------- pasos ---------- */
+  var icon = function (n, svg) { return smartImg((C.images.icons || [])[n], svg, ""); };
   var steps = [
-    { id: "age", kind: "age", title: "What is your Age?",
-      options: ["20 - 29 Years Old", "30 - 39 Years Old", "40 - 49 Years Old", "50 - 59 Years Old", "60 - 69 Years Old", "70+ Years Old"] },
+    { id: "edad", kind: "age", title: "¿Cuál es tu edad?",
+      options: ["20 - 29 años", "30 - 39 años", "40 - 49 años", "50 - 59 años", "60 - 69 años", "70+ años"] },
 
-    { id: "frustration", kind: "single", title: "What's been your biggest frustration in the bedroom lately?",
+    { id: "frustracion", kind: "single", title: "¿Cuál ha sido tu mayor frustración en la cama últimamente?",
       options: [
-        { t: "Finishing too fast", i: I.stopwatch, w: 2 }, { t: "Trouble getting hard", i: I.down, w: 3 },
-        { t: "Trouble staying hard", i: I.wave, w: 3 }, { t: "Low drive/desire", i: I.gauge, w: 2 },
-        { t: "A mix of all of these", i: I.grid, w: 4 }, { t: "Nothing yet, but I want to stay at my peak", i: I.peak, w: 0 }] },
+        { t: "Terminar demasiado rápido", i: icon(0, I.stopwatch) },
+        { t: "Problemas para tener una erección", i: icon(1, I.down) },
+        { t: "Problemas para mantener la erección", i: icon(2, I.wave) },
+        { t: "Poco deseo / libido baja", i: icon(3, I.gauge) },
+        { t: "Una mezcla de todo esto", i: icon(4, I.grid) },
+        { t: "Nada aún, pero quiero mantenerme en mi mejor nivel", i: icon(5, I.peak) }] },
 
-    { id: "not-alone", kind: "text", title: "You're not alone in this.",
+    { id: "no-estas-solo", kind: "text", title: "No estás solo en esto.",
       text: function () {
-        return "Over " + C.customersCount + " men reported the same frustrations before they started taking " + C.productName +
-          ". It's a simple daily routine, made in a GMP-certified facility and backed by a " + C.guaranteeDays + "-day money-back guarantee.";
+        return "Más de " + C.customersCount + " hombres reportaron las mismas frustraciones antes de empezar a tomar " + C.productName +
+          ". Es una rutina diaria sencilla, fabricada en una instalación con certificación GMP y respaldada por una garantía de devolución de " +
+          C.guaranteeDays + " días.";
       } },
 
-    { id: "anxiety", kind: "single", title: "Do you experience anxiety or overthinking before or during sex?",
-      options: [{ t: "Yes", w: 2 }, { t: "No", w: 0 }] },
+    { id: "ansiedad", kind: "single", title: "¿Sientes ansiedad o piensas demasiado antes o durante el sexo?",
+      options: [{ t: "Sí" }, { t: "No" }] },
 
-    { id: "since", kind: "single", title: "When did you first start noticing changes in your sexual life?",
-      options: [{ t: "Over a year ago", w: 3 }, { t: "In the past year", w: 2 }, { t: "In the past few months", w: 1 }, { t: "Not sure", w: 1 }] },
+    { id: "desde-cuando", kind: "single", title: "¿Cuándo empezaste a notar cambios en tu vida sexual?",
+      options: [{ t: "Hace más de un año" }, { t: "En el último año" }, { t: "En los últimos meses" }, { t: "No estoy seguro" }] },
 
-    { id: "goals", kind: "multi", title: "What results are you hoping to see?", sub: "Choose as many as you'd like.",
+    { id: "resultados", kind: "multi", title: "¿Qué resultados esperas ver?", sub: "Elige todas las que quieras.",
       options: [
-        { t: "Lasting longer in bed", i: "⏱️" }, { t: "Stronger, firmer erections", i: "💪" }, { t: "Higher sex drive", i: "🔥" },
-        { t: "More stamina and endurance", i: "⚡" }, { t: "Feeling confident again", i: "😎" }, { t: "All of the above", i: "🚀", all: true }] },
+        { t: "Durar más en la cama", i: "⏱️" }, { t: "Erecciones más fuertes y firmes", i: "💪" }, { t: "Más deseo sexual", i: "🔥" },
+        { t: "Más energía y resistencia", i: "⚡" }, { t: "Volver a sentirme seguro", i: "😎" }, { t: "Todo lo anterior", i: "🚀", all: true }] },
 
-    { id: "social-proof", kind: "proof",
-      title: function () { return C.customersCount + "+ men are taking back their confidence in the bedroom"; },
-      sub: "Here's what some of them are saying." },
+    { id: "prueba-social", kind: "proof",
+      title: function () { return "Más de " + C.customersCount + " hombres están recuperando su confianza en la cama"; },
+      sub: "Y la mayoría notó la diferencia en las primeras semanas." },
 
-    { id: "relationship", kind: "single", title: "What's your relationship status?",
-      options: [{ t: "Single or dating" }, { t: "In a relationship" }, { t: "Married" }] },
+    { id: "relacion", kind: "single", title: "¿Cuál es tu situación sentimental?",
+      options: [{ t: "Soltero o saliendo con alguien" }, { t: "En una relación" }, { t: "Casado" }] },
 
-    { id: "sex-life", kind: "single", title: "How would you describe your sex life right now?",
-      options: [{ t: "It's basically stopped", w: 4 }, { t: "Less than I'd like", w: 3 }, { t: "It's okay, but not great", w: 2 }, { t: "I'm satisfied", w: 0 }] },
+    { id: "vida-sexual", kind: "single", title: "¿Cómo describirías tu vida sexual ahora mismo?",
+      options: [{ t: "Prácticamente se detuvo" }, { t: "Menos de lo que me gustaría" }, { t: "Está bien, pero no genial" }, { t: "Estoy satisfecho" }] },
 
-    { id: "tried", kind: "single", title: "What have you tried to fix this issue?",
-      options: [{ t: "Prescription pills", w: 2 }, { t: "Lifestyle changes", w: 1 }, { t: "Quitting porn or masturbation", w: 1 }, { t: "Nothing yet", w: 1 }, { t: "Other", w: 1 }] },
+    { id: "intentado", kind: "single", title: "¿Qué has intentado para solucionar este problema?",
+      whyLabel: "Por qué la mayoría de las soluciones fallan",
+      why: "La mayoría de las opciones fuerzan un resultado temporal que desaparece en horas, usan dosis débiles o solo atacan una parte del problema. Por eso tantos hombres siguen probando cosas distintas sin resolver nunca lo que realmente está pasando.",
+      options: [{ t: "Pastillas con receta" }, { t: "Cambios en el estilo de vida" }, { t: "Dejar la pornografía o la masturbación" }, { t: "Nada todavía" }, { t: "Otro" }] },
 
-    { id: "motivational", kind: "motivational",
-      title: "You don't have to accept weak erections or a sex drive that's gone quiet.",
-      text: "Most quick fixes wear off in hours, use small doses, or only target one part of the problem. Based on your answers, we're putting together a simple daily plan to support healthy blood flow, energy and drive." },
+    { id: "motivacional", kind: "motivational",
+      title: "No tienes que aceptar erecciones débiles ni un deseo sexual que se apagó.",
+      text: "Según tus respuestas, estamos armando un plan para apoyar tu flujo sanguíneo y ayudarte a rendir como antes. Un cambio sencillo, y ella será la primera en notarlo." },
 
-    { id: "morning", kind: "single", title: "Have you noticed a decline in morning erections?",
-      why: "Morning erections are one of the clearest everyday signals of how well your circulation is working.",
-      options: [{ t: "Yes", w: 3 }, { t: "No", w: 0 }, { t: "Not sure", w: 1 }] },
+    { id: "matutinas", kind: "single", title: "¿Has notado una disminución en tus erecciones matutinas?",
+      why: "Las erecciones matutinas son una de las señales más claras de qué tan bien está funcionando tu circulación.",
+      options: [{ t: "Sí" }, { t: "No" }, { t: "No estoy seguro" }] },
 
-    { id: "stress", kind: "single", title: "How often do you tend to experience stress?",
-      why: "Stress can tighten blood vessels and lower desire, so it's an important part of your profile.",
-      options: [{ t: "Sometimes", w: 1 }, { t: "All the time", w: 3 }, { t: "Rarely", w: 0 }, { t: "Not sure", w: 1 }] },
+    { id: "estres", kind: "single", title: "¿Con qué frecuencia sueles sentir estrés?",
+      why: "El estrés contrae los vasos sanguíneos y reduce el flujo de sangre, por eso es una parte importante de tu perfil.",
+      options: [{ t: "A veces" }, { t: "Todo el tiempo" }, { t: "Rara vez" }, { t: "No estoy seguro" }] },
 
-    { id: "summary", kind: "summary" },
+    { id: "resumen", kind: "summary" },
     { id: "plan", kind: "chart" },
-    { id: "final-loading", kind: "loading" }
+    { id: "final", kind: "loading" }
   ];
 
   var answers = {}, history = [], idx = 0;
@@ -86,7 +92,7 @@
       return u.toString();
     } catch (e) { return url; }
   }
-  // Shows the fallback SVG first, then swaps in the real image if the file exists.
+  // Muestra la ilustración incluida y la reemplaza por tu imagen si el archivo existe.
   function smartImg(src, fallback, alt) {
     return '<span class="smart-img" data-src="' + (src || "") + '" data-alt="' + (alt || "") + '">' + fallback + "</span>";
   }
@@ -95,25 +101,12 @@
       var src = box.getAttribute("data-src");
       if (!src) return;
       var img = new Image();
-      img.onload = function () { box.innerHTML = ""; img.alt = box.getAttribute("data-alt"); box.appendChild(img); };
+      img.onload = function () { box.innerHTML = ""; img.alt = box.getAttribute("data-alt"); box.appendChild(img); box.classList.add("is-photo"); };
       img.src = src;
     });
   }
 
-  function level() {
-    var s = 0, max = 0;
-    steps.forEach(function (st) {
-      if (st.kind !== "single") return;
-      var m = Math.max.apply(null, st.options.map(function (o) { return o.w || 0; }));
-      if (!m) return;
-      max += m;
-      if (answers[st.id] != null) s += st.options[answers[st.id]].w || 0;
-    });
-    var r = max ? s / max : 0;
-    if (r >= 0.55) return 0; if (r >= 0.35) return 1; if (r >= 0.15) return 2; return 3;
-  }
-
-  /* ---------- navigation ---------- */
+  /* ---------- navegación ---------- */
   function go(n) { history.push(idx); idx = n; render(); }
   function next() { go(idx + 1); }
   backBtn.addEventListener("click", function () { if (history.length) { idx = history.pop(); render(); } });
@@ -137,14 +130,16 @@
     return '<h2 class="step-heading">' + val(t) + "</h2>" + (sub ? '<p class="step-subtext">' + sub + "</p>" : '<div class="spacer"></div>');
   }
   function whyBox(st) {
-    return st.why ? '<div class="why-box"><div class="why-box-label">Why we ask</div><div class="why-box-text">' + st.why + "</div></div>" : "";
+    return st.why ? '<div class="why-box"><div class="why-box-label">' + (st.whyLabel || "Por qué preguntamos") +
+      '</div><div class="why-box-text">' + st.why + "</div></div>" : "";
   }
   function answer(st, i, label) {
     answers[st.id] = i;
     track("quiz_answer", { quiz_step_id: st.id, answer: label });
   }
+  function continueBtn(extra) { return '<button class="continue-btn visible"' + (extra || "") + ">Continuar</button>"; }
 
-  /* ---------- renderers ---------- */
+  /* ---------- pantallas ---------- */
   var R = {
     age: function (st, el) {
       el.innerHTML = heading(st.title) + '<div class="age-grid">' + st.options.map(function (t, i) {
@@ -181,7 +176,7 @@
       el.innerHTML = '<h2 class="step-heading">' + st.title + '</h2><p class="step-subtext">' + st.sub + "</p>" +
         '<div class="options-list">' + st.options.map(function (o, i) {
           return '<button class="option-item" data-i="' + i + '"><span class="ico">' + o.i + "</span><span>" + o.t + "</span></button>";
-        }).join("") + '</div><button class="continue-btn">Continue</button>';
+        }).join("") + '</div><button class="continue-btn">Continuar</button>';
       var items = el.querySelectorAll(".option-item"), btn = el.querySelector(".continue-btn");
       var allIdx = st.options.findIndex(function (o) { return o.all; });
       function paint() {
@@ -210,80 +205,72 @@
 
     text: function (st, el) {
       el.innerHTML = '<h2 class="step-heading">' + st.title + '</h2><div class="options-list"><p class="step-subtext">' + val(st.text) +
-        '</p></div><button class="continue-btn visible">Continue</button>';
+        "</p></div>" + continueBtn();
       el.querySelector(".continue-btn").addEventListener("click", next);
     },
 
     proof: function (st, el) {
       el.innerHTML = '<div class="social-proof-section"><h2 class="social-proof-heading">' + val(st.title) + '</h2><p class="social-proof-sub">' + st.sub +
         '</p><div class="social-proof-wrapper">' + C.images.proof.map(function (src, i) {
-          return '<div class="social-proof-img">' + smartImg(src, A.placeholder("Customer photo " + (i + 1), i), "Customer") + "</div>";
-        }).join("") + '</div></div><button class="continue-btn visible">Continue</button>';
+          return '<div class="social-proof-img">' + smartImg(src, A.placeholder("images/proof-" + (i + 1) + ".jpg", i), "Cliente") + "</div>";
+        }).join("") + "</div></div>" + continueBtn();
       el.querySelector(".continue-btn").addEventListener("click", next);
     },
 
     motivational: function (st, el) {
       el.innerHTML = '<div class="motivational-section"><h2 class="motivational-heading">' + st.title + '</h2><p class="motivational-text">' + st.text +
-        '</p><button class="continue-btn visible">Continue</button><div class="motivational-img">' +
-        smartImg(C.images.transformation, A.transformation(), "Transformation") + "</div></div>";
+        "</p>" + continueBtn() + '<div class="motivational-img">' +
+        smartImg(C.images.transformation, A.transformation(), "Transformación") + "</div></div>";
       el.querySelector(".continue-btn").addEventListener("click", next);
     },
 
     summary: function (st, el) {
-      var lv = level();
-      var names = ["Low", "Normal", "Medium", "High"];
-      var pos = [12, 38, 62, 88][lv];
-      var alerts = [
-        ["Low level", "Your answers suggest your body isn't performing at the level it should be. This is more common than most men think, and it typically gets worse over time without the right support."],
-        ["Normal level", "You're getting by, but your answers show clear room to feel more energized, confident and in control."],
-        ["Medium level", "You have a good foundation. The right daily support can help you get closer to your peak."],
-        ["High level", "You're in a great place. A consistent routine can help you stay at your peak as you get older."]
-      ][lv];
-      var room = ["High", "High", "Medium", "Moderate"][lv];
-      el.innerHTML = heading("Summary of Your Sexual Performance Profile") +
-        '<div class="summary-card"><div class="summary-card-header"><span class="summary-card-title">Level of sexual health</span>' +
-        '<span class="summary-badge badge-' + lv + '">' + names[lv] + '</span></div>' +
-        '<div class="summary-person-img">' + smartImg(C.images.profile, A.portrait(answers.age != null ? answers.age : 2), "Profile") + "</div>" +
-        '<div style="text-align:left"><span class="your-level-label">Your level</span></div>' +
-        '<div class="gradient-bar-container"><div class="gradient-bar"><div class="gradient-slider" id="slider"></div></div>' +
-        '<div class="gradient-labels"><span>Low</span><span>Normal</span><span>Medium</span><span>High</span></div></div></div>' +
-        '<div class="summary-alert alert-' + lv + '"><div class="summary-alert-icon">' + (lv < 2 ? "!" : "✓") + '</div><div>' +
-        '<div class="summary-alert-title">' + alerts[0] + '</div><div class="summary-alert-text">' + alerts[1] + "</div></div></div>" +
+      el.innerHTML = heading("Resumen de tu perfil de rendimiento sexual") +
+        '<div class="summary-card"><div class="summary-card-header"><span class="summary-card-title">Nivel de salud sexual</span>' +
+        '<span class="summary-badge">Bajo</span></div>' +
+        '<div class="summary-person-img">' + smartImg(C.images.profile, A.portrait(answers.edad != null ? answers.edad : 2), "Perfil") + "</div>" +
+        '<div style="text-align:left"><span class="your-level-label">Tu nivel</span></div>' +
+        '<div class="gradient-bar-container"><div class="gradient-bar"><div class="gradient-slider"></div></div>' +
+        '<div class="gradient-labels"><span>Bajo</span><span>Normal</span><span>Medio</span><span>Alto</span></div></div></div>' +
+        '<div class="summary-alert"><div class="summary-alert-icon">!</div><div>' +
+        '<div class="summary-alert-title">Nivel bajo</div><div class="summary-alert-text">Tus respuestas indican que tu cuerpo no está rindiendo al nivel que debería. ' +
+        "Esto es más común de lo que la mayoría de los hombres cree y, sin el apoyo adecuado, suele empeorar con el tiempo.</div></div></div>" +
         '<div class="summary-metrics">' +
-        '<div class="metric-card">' + I.pulse.replace("<svg", '<svg class="metric-icon"') + '<div><div class="metric-label">Room For Improvement</div><div class="metric-value">' + room + "</div></div></div>" +
-        '<div class="metric-card half">' + I.bolt.replace("<svg", '<svg class="metric-icon"') + '<div><div class="metric-label">Profile Match</div><div class="metric-value">Your answers match the men our daily routine was designed for.</div></div></div>' +
-        '<div class="metric-card half">' + I.target.replace("<svg", '<svg class="metric-icon"') + '<div><div class="metric-label">Next Step</div><div class="metric-value">We\'ve put together a personalized recommendation. Click below to see it and claim your exclusive discount.</div></div></div>' +
-        '</div><button class="continue-btn visible" style="margin-top:20px">Continue</button>';
-      setTimeout(function () { var s = el.querySelector("#slider"); if (s) s.style.left = pos + "%"; }, 150);
+        '<div class="metric-card">' + I.pulse.replace("<svg", '<svg class="metric-icon"') +
+        '<div><div class="metric-label">Margen de mejora</div><div class="metric-value">Alto</div></div></div>' +
+        '<div class="metric-card trigger">' + I.bolt.replace("<svg", '<svg class="metric-icon"') +
+        '<div><div class="metric-label">' + C.successRate + ' de probabilidad de éxito</div><div class="metric-value">Los hombres con perfiles similares reportan mejoras reales y notables en las primeras 2-3 semanas.</div></div></div>' +
+        '<div class="metric-card trigger"><div><div class="metric-label">Siguiente paso</div><div class="metric-value">Según tus respuestas, preparamos una recomendación personalizada. Haz clic abajo para ver lo que te sugerimos y obtener tu descuento exclusivo.</div></div></div>' +
+        "</div>" + continueBtn(' style="margin-top:20px"');
       el.querySelector(".continue-btn").addEventListener("click", next);
-      track("quiz_complete", { level: names[lv] });
+      track("quiz_complete", {});
     },
 
     chart: function (st, el) {
-      var labels = ["Week 1-2", "Week 3-4", "Week 5-7", "Week 8-9", "Week 10-12"], h = [30, 45, 60, 78, 95];
-      el.innerHTML = heading("The last plan you'll ever need to reclaim your drive and performance.") +
+      var labels = ["Semana 1-2", "Semana 3-4", "Semana 5-7", "Semana 8-9", "Semana 10-12"], h = [30, 45, 60, 78, 95];
+      el.innerHTML = heading("El último plan que necesitarás para recuperar tu deseo y tu rendimiento.") +
         '<div class="chart-section"><div class="chart-container"><div class="chart-bars">' + labels.map(function (l, i) {
           return '<div class="chart-bar-wrapper"><div class="chart-bar b' + (i + 1) + '" data-h="' + h[i] + '">' +
-            (i === 3 ? '<div class="goal-badge">Goal</div><div class="goal-check">✓</div>' : "") +
+            (i === 3 ? '<div class="goal-badge">Meta</div><div class="goal-check">✓</div>' : "") +
             '</div><div class="chart-bar-label">' + l + "</div></div>";
-        }).join("") + '</div></div><p class="chart-result-text">Based on your answers, your plan is built to support your energy, drive, and bedroom performance over the next 63 days.</p></div>' +
-        '<button class="continue-btn visible" style="margin-top:20px">Continue</button>';
+        }).join("") + '</div></div><p class="chart-result-text">Según tus respuestas, tu plan está diseñado para apoyar tu energía, tu deseo y tu rendimiento en la cama durante los próximos 63 días.</p></div>' +
+        continueBtn(' style="margin-top:20px"');
       setTimeout(function () { el.querySelectorAll(".chart-bar").forEach(function (b) { b.style.height = b.dataset.h + "%"; }); }, 80);
       el.querySelector(".continue-btn").addEventListener("click", next);
     },
 
     loading: function (st, el) {
-      var names = ["Goal", "Custom Fit", "Selected Essentials"];
+      var names = ["Objetivo", "Ajuste personalizado", "Esenciales seleccionados"];
       var questions = [
-        "Are you ready to take back control of your performance?",
-        "Did you know healthy blood flow plays a key role in male sexual performance?",
-        "Would you try a simple solution that takes under 30 seconds a day?"
+        "¿Estás listo para retomar el control de tu rendimiento?",
+        "¿Sabías que la mala circulación sanguínea es la causa #1 del deterioro del rendimiento sexual en los hombres?",
+        "¿Probarías una solución sencilla que toma menos de 30 segundos al día?"
       ];
-      el.innerHTML = '<div class="loading-section"><h2 class="loading-heading">Creating your personalized plan…</h2><div class="loading-steps">' +
+      el.innerHTML = '<div class="loading-section"><h2 class="loading-heading">Creando tu plan personalizado…</h2><div class="loading-steps">' +
         names.map(function (n, i) {
           return '<div class="loading-step-item" id="ls' + i + '"><div class="loading-step-header"><span class="loading-step-name">' + n +
             '</span><span class="loading-step-status" id="lst' + i + '"></span></div><div class="loading-item-bar-container"><div class="loading-item-bar-fill" id="lb' + i + '"></div></div></div>';
-        }).join("") + '</div><button class="continue-btn" id="submitBtn" style="margin-top:24px">Submit</button></div>';
+        }).join("") + '</div><button class="continue-btn" id="submitBtn" style="margin-top:24px">Enviar</button></div>';
 
       var overlay = document.getElementById("modalOverlay"), mText = document.getElementById("modalText");
       var btns = overlay.querySelectorAll(".modal-btn");
@@ -315,7 +302,7 @@
     }
   };
 
-  /* ---------- countdown (per-visitor, like the original 2h timer) ---------- */
+  /* ---------- cuenta regresiva (por visitante, 2h como el original) ---------- */
   (function () {
     var key = "eremax_cd_end", end;
     try { end = +localStorage.getItem(key); } catch (e) {}

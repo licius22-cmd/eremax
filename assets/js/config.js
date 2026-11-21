@@ -9,9 +9,9 @@ window.EREMAX_CONFIG = {
   guaranteeDays: 60,
 
   // Número de prueba social (quiz pasos 3 y 7, valoración de la oferta). Usa solo un número comprobable.
-  customersCount: "207,500",
+  customersCount: "[XX,XXX]",
   // Porcentaje del bloque "probabilidad de éxito" (quiz paso 14).
-  successRate: "91%",
+  successRate: "[XX]%",
 
   // Pasa los parámetros UTM / click-id de la URL a la oferta y a los checkouts.
   passQueryParams: true,
@@ -52,11 +52,12 @@ window.EREMAX_CONFIG = {
               "../assets/images/oferta/product-3.webp", "../assets/images/oferta/product-4.webp"],
     supplementFacts: "../assets/images/oferta/supplement-facts.png",
 
+    // icon: flame | drop | heart | bolt | up | clock | crown
     benefits: [
-      { title: "Rendimiento más firme y pleno", text: "" },
-      { title: "Un deseo que no se apaga", text: "" },
-      { title: "Más energía y resistencia", text: "" },
-      { title: "Fácil de tomar", text: "Una gomita al día, sin agua y sin complicaciones." }
+      { icon: "drop", title: "Rendimiento más firme y pleno", text: "" },
+      { icon: "flame", title: "Un deseo que no se apaga", text: "" },
+      { icon: "heart", title: "Más energía y resistencia", text: "" },
+      { icon: "bolt", title: "Fácil de tomar", text: "Una gomita al día, sin agua y sin complicaciones." }
     ],
 
     // Paquetes. El que tiene selected:true aparece marcado al entrar.
@@ -85,6 +86,21 @@ window.EREMAX_CONFIG = {
     reviews: [
       // { name: "Nombre A.", title: "Título de la reseña", text: "Texto de la reseña…", photo: "../assets/images/oferta/review-1.jpg" }
     ],
+
+    // Sección negra "Por qué los hombres eligen…" (4 tarjetas con borde dorado).
+    why: [
+      { icon: "up", title: "FLUJO SANGUÍNEO DONDE MÁS IMPORTA", text: "Ingredientes elegidos para apoyar una circulación saludable, para que tu cuerpo responda cuando lo necesitas." },
+      { icon: "flame", title: "UN DESEO QUE SE SIENTE", text: "Apoyo diario para tu deseo y tu energía, para que vuelvas a tener ganas de buscarla." },
+      { icon: "drop", title: "CONFIANZA DE PRINCIPIO A FIN", text: "Una rutina constante para sentirte seguro en la cama, sin pensar en si vas a rendir." },
+      { icon: "clock", title: "LISTO CUANDO ELLA LO ESTÉ", text: "Una gomita al día. Sin calcular la hora de una pastilla: tu rutina trabaja todos los días." }
+    ],
+
+    // Sección "Lo que nos dijeron en nuestra encuesta". Solo con datos REALES de tu propia encuesta.
+    // Déjalo en null y la sección no aparece.
+    survey: null, // { note: "*Según respuestas de X clientes.", items: [{ pct: "XX%", text: "..." }, ...] }
+
+    // Imagen debajo de "Es para ti si…" (antes/después, ancho completo).
+    rightForYouImage: "../assets/images/oferta/right-for-you.webp",
 
     // Ingredientes (ajústalos a tu fórmula real).
     ingredients: [

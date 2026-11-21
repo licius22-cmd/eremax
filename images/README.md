@@ -1,14 +1,15 @@
-# Images
+# Imagens — onde colocar cada uma
 
-Drop your images here with these exact names (or change the paths in `config.js` → `images`).
-While a file is missing, the quiz shows a built-in illustration in its place, so the funnel always works.
+Coloque os arquivos nesta pasta `images/` com **exatamente** estes nomes. Enquanto um arquivo não existir, o quiz mostra a ilustração padrão no lugar.
+(Se quiser outros nomes ou formatos, mude os caminhos em `config.js` → `images`.)
 
-| File | Where it shows | Suggested size |
+| Etapa | Arquivo | Dica |
 |---|---|---|
-| `age-1.webp` … `age-6.webp` | Step 1 age cards (20-29 → 70+) | 600×600, white background, man in a dark tee, shoulders up |
-| `proof-1.jpg` … `proof-4.jpg` | Step 7 social proof grid | 800×800 square |
-| `transformation.png` | Step 11 (below the Continue button) | 680px wide |
-| `profile.png` | Step 14 summary card | 360×400, transparent background |
-| `logo.png` (optional) | Top logo — set `images.logo` in `config.js` | 28px tall |
+| 1 – Idade | `age-1.webp` (20-29) · `age-2.webp` (30-39) · `age-3.webp` (40-49) · `age-4.webp` (50-59) · `age-5.webp` (60-69) · `age-6.webp` (70+) | 600×600, **fundo transparente** (PNG/WebP) — assim o cartão fica todo dourado ao selecionar |
+| 2 – Frustração | `icons/icon-1.png` … `icons/icon-6.png` (na ordem das opções) | ícones de linha pretos, fundo transparente, 64×64 |
+| 7 – Prova social | `proof-1.jpg` · `proof-2.jpg` · `proof-3.jpg` · `proof-4.jpg` | quadradas, 800×800 |
+| 11 – Motivacional | `transformation.png` | 680px de largura |
+| 14 – Resumo | `profile.png` | 360×400, fundo transparente |
+| Logo (opcional) | `logo.png` + preencher `images.logo` no `config.js` | 28px de altura |
 
-Use only images you own or have licensed, and real customer photos with their permission.
+Use só imagens suas ou licenciadas, e fotos de clientes com autorização.

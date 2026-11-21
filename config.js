@@ -1,43 +1,53 @@
 /* ============================================================
-   EREMAX QUIZ — CONFIG
-   Everything you normally change lives here.
+   EREMAX QUIZ — CONFIG (versión en español)
+   Todo lo que normalmente cambias está aquí.
    ============================================================ */
 window.EREMAX_CONFIG = {
   brand: "Eremax",
-  productName: "Eremax Performance Gummies",
+  productName: "Eremax",
 
-  // Social-proof number used in the copy. Only use a figure you can back up.
+  // Número de prueba social usado en los textos (pasos 3 y 7).
   customersCount: "[XX,XXX]",
 
-  // Where the "Submit" button on the last step sends the visitor.
-  // Default: the offer page included in this repo. Swap for your product/checkout URL.
+  // Porcentaje del bloque "probabilidad de éxito" en el resumen (paso 14).
+  successRate: "[XX]%",
+
+  // A dónde envía el botón "Enviar" del último paso.
+  // Por defecto: la página de oferta incluida. Cámbialo por tu página de producto/checkout.
   redirectUrl: "offer.html",
 
-  // Pass UTM / click-id params from the quiz URL to the redirect + checkout links.
+  // Pasa los parámetros UTM / click-id de la URL del quiz al redirect y a los checkouts.
   passQueryParams: true,
 
-  // Black Friday bar countdown: per-visitor timer (seconds). Original uses 2h.
+  // Contador de la barra Black Friday, por visitante (segundos). El original usa 2h.
   countdownSeconds: 7200,
 
-  // Images — drop your files in /images with these names (or change the paths).
-  // While a file is missing, a built-in illustration is shown instead.
+  // IMÁGENES — pon tus archivos en la carpeta /images con estos nombres.
+  // Mientras un archivo no exista, se muestra una ilustración incluida en su lugar.
   images: {
-    logo: "",                       // e.g. "images/logo.png" — empty = text logo
+    logo: "",   // ej. "images/logo.png" — vacío = logo de texto
+    // Paso 1 — tarjetas de edad (20-29 → 70+). PNG/WebP con fondo transparente.
     age: ["images/age-1.webp", "images/age-2.webp", "images/age-3.webp",
           "images/age-4.webp", "images/age-5.webp", "images/age-6.webp"],
+    // Paso 2 — íconos de las 6 opciones (PNG/SVG/WebP, fondo transparente).
+    icons: ["images/icons/icon-1.png", "images/icons/icon-2.png", "images/icons/icon-3.png",
+            "images/icons/icon-4.png", "images/icons/icon-5.png", "images/icons/icon-6.png"],
+    // Paso 7 — prueba social (4 fotos cuadradas).
     proof: ["images/proof-1.jpg", "images/proof-2.jpg", "images/proof-3.jpg", "images/proof-4.jpg"],
+    // Paso 11 — imagen debajo del botón Continuar.
     transformation: "images/transformation.png",
+    // Paso 14 — imagen dentro de la tarjeta "Nivel de salud sexual".
     profile: "images/profile.png"
   },
 
-  // Offer page packages (offer.html) — replace prices and checkout URLs.
+  // Paquetes de la página de oferta (offer.html) — cambia precios y links de checkout.
   packages: [
-    { id: "1", label: "1 Bottle", supply: "30-Day Supply", price: 69, oldPrice: 99, perUnit: "$69 / bottle",
-      shipping: "+ Shipping", badge: "", bonuses: false, checkoutUrl: "https://example.com/checkout?pkg=1" },
-    { id: "6", label: "6 Bottles", supply: "180-Day Supply", price: 294, oldPrice: 594, perUnit: "$49 / bottle",
-      shipping: "FREE Shipping", badge: "BEST VALUE", bonuses: true, highlight: true, checkoutUrl: "https://example.com/checkout?pkg=6" },
-    { id: "3", label: "3 Bottles", supply: "90-Day Supply", price: 177, oldPrice: 297, perUnit: "$59 / bottle",
-      shipping: "FREE Shipping", badge: "MOST POPULAR", bonuses: true, checkoutUrl: "https://example.com/checkout?pkg=3" }
+    { id: "1", label: "1 Frasco", supply: "Suministro de 30 días", price: 69, oldPrice: 99, perUnit: "$69 / frasco",
+      shipping: "+ Envío", badge: "", bonuses: false, checkoutUrl: "https://example.com/checkout?pkg=1" },
+    { id: "6", label: "6 Frascos", supply: "Suministro de 180 días", price: 294, oldPrice: 594, perUnit: "$49 / frasco",
+      shipping: "ENVÍO GRATIS", badge: "MEJOR VALOR", bonuses: true, highlight: true, checkoutUrl: "https://example.com/checkout?pkg=6" },
+    { id: "3", label: "3 Frascos", supply: "Suministro de 90 días", price: 177, oldPrice: 297, perUnit: "$59 / frasco",
+      shipping: "ENVÍO GRATIS", badge: "MÁS POPULAR", bonuses: true, checkoutUrl: "https://example.com/checkout?pkg=3" }
   ],
 
   guaranteeDays: 60

@@ -141,3 +141,11 @@
 /* icon slots (step 2) */
 .option-item .ico .smart-img { width: 28px; height: 28px; }
 .age-card.selected .age-card-label { color: #fff; }
+
+/* fix: gráfico de 12 semanas cabe en pantallas chicas */
+@media (max-width: 420px) {
+  .chart-container { padding: 40px 10px 14px; }
+  .chart-bars { gap: 5px; }
+  .chart-bar-label { white-space: normal; font-size: 10px; line-height: 1.2; }
+  .goal-badge { font-size: 10px; padding: 2px 8px; }
+}

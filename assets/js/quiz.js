@@ -108,7 +108,12 @@
 
   /* ---------- navegación ---------- */
   function go(n) { history.push(idx); idx = n; render(); }
-  function next() { go(idx + 1); }
+  function next() {
+    var cur = host.firstChild;
+    if (cur && cur.dataset.leaving) return;
+    if (cur) cur.dataset.leaving = "1";
+    go(idx + 1);
+  }
   backBtn.addEventListener("click", function () { if (history.length) { idx = history.pop(); render(); } });
 
   function render() {
@@ -148,6 +153,7 @@
       }).join("") + "</div>";
       el.querySelectorAll(".age-card").forEach(function (b) {
         b.addEventListener("click", function () {
+          if (el.dataset.locked) return; el.dataset.locked = "1";
           el.querySelectorAll(".age-card").forEach(function (x) { x.classList.remove("selected"); });
           b.classList.add("selected");
           answer(st, +b.dataset.i, st.options[b.dataset.i]);
@@ -163,6 +169,7 @@
       }).join("") + "</div>" + whyBox(st);
       el.querySelectorAll(".option-item").forEach(function (b) {
         b.addEventListener("click", function () {
+          if (el.dataset.locked) return; el.dataset.locked = "1";
           el.querySelectorAll(".option-item").forEach(function (x) { x.classList.remove("selected"); });
           b.classList.add("selected");
           answer(st, +b.dataset.i, st.options[b.dataset.i].t);
@@ -212,7 +219,7 @@
     proof: function (st, el) {
       el.innerHTML = '<div class="social-proof-section"><h2 class="social-proof-heading">' + val(st.title) + '</h2><p class="social-proof-sub">' + st.sub +
         '</p><div class="social-proof-wrapper">' + Q.images.proof.map(function (src, i) {
-          return '<div class="social-proof-img">' + smartImg(src, A.placeholder("quiz/proof-" + (i + 1) + ".jpg", i), "Cliente") + "</div>";
+          return '<div class="social-proof-img">' + smartImg(src, A.placeholder(String(src || "").split("/").pop() || ("step7-" + (i + 1)), i), "Cliente") + "</div>";
         }).join("") + "</div></div>" + continueBtn();
       el.querySelector(".continue-btn").addEventListener("click", next);
     },
@@ -281,8 +288,10 @@
         setTimeout(function () {
           mText.textContent = questions[p];
           overlay.classList.add("active");
+          var answered = false;
           btns.forEach(function (b) {
             b.onclick = function () {
+              if (answered) return; answered = true;
               overlay.classList.remove("active");
               track("quiz_answer", { quiz_step_id: "final-q" + (p + 1), answer: b.dataset.answer });
               setTimeout(function () { el.querySelector("#lb" + p).style.width = "100%"; el.querySelector("#lst" + p).textContent = "100%"; }, 100);
@@ -296,6 +305,7 @@
       }
       phase(0);
       el.querySelector("#submitBtn").addEventListener("click", function () {
+        if (this.dataset.sent) return; this.dataset.sent = "1";
         track("quiz_submit", {});
         window.location.href = withParams(Q.redirectUrl);
       });
@@ -315,6 +325,11 @@
     }
     tick(); setInterval(tick, 1000);
   })();
+
+  /* ---------- precarga de imágenes ---------- */
+  var preloaded = [];
+  [].concat(Q.images.age || [], Q.images.icons || [], Q.images.proof || [], Q.images.transformation || [], Q.images.profile || [])
+    .forEach(function (src) { if (src) { var im = new Image(); im.src = src; preloaded.push(im); } });
 
   render();
 })();

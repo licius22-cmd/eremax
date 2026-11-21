@@ -9,9 +9,9 @@ window.EREMAX_CONFIG = {
   guaranteeDays: 60,
 
   // Número de prueba social (quiz pasos 3 y 7, valoración de la oferta). Usa solo un número comprobable.
-  customersCount: "[XX,XXX]",
+  customersCount: "207,500",
   // Porcentaje del bloque "probabilidad de éxito" (quiz paso 14).
-  successRate: "[XX]%",
+  successRate: "91%",
 
   // Pasa los parámetros UTM / click-id de la URL a la oferta y a los checkouts.
   passQueryParams: true,

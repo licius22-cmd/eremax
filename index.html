@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eremax | Find Your Performance Support</title>
+  <meta name="description" content="Take the 60-second Eremax quiz and get a personalized male performance support plan." />
+  <meta name="theme-color" content="#0b1220" />
+  <meta property="og:title" content="Eremax | Find Your Performance Support" />
+  <meta property="og:description" content="Take the 60-second quiz and get your personalized plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Pixels / GTM / RedTrack: paste your scripts here -->
+</head>
+<body>
+  <div class="promo-bar">
+    <span class="promo-tag">BLACK FRIDAY SALE</span>
+    <span class="promo-text">SAVE UP TO 70% + FREE GIFTS</span>
+    <span class="countdown" id="countdown">
+      <b id="cd-h">00</b><small>Hrs</small>
+      <b id="cd-m">00</b><small>Mins</small>
+      <b id="cd-s">00</b><small>Secs</small>
+    </span>
+  </div>
+
+  <header class="site-header">
+    <button class="back-btn" id="backBtn" aria-label="Go back" hidden>&#8592;</button>
+    <a class="logo" href="#" aria-label="Eremax">
+      <span class="logo-mark">E</span><span class="logo-text">EREMAX</span>
+    </a>
+    <span class="step-count" id="stepCount"></span>
+  </header>
+
+  <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+  <main class="quiz" id="app" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <nav class="footer-links">
+      <a href="legal/terms.html">Terms of Service</a>
+      <a href="legal/refund.html">Refund Policy</a>
+      <a href="legal/privacy.html">Privacy Policy</a>
+      <a href="legal/shipping.html">Shipping Policy</a>
+      <a href="mailto:support@eremax.com">Contact</a>
+    </nav>
+    <p class="company">© <span id="year"></span> Eremax. All rights reserved.</p>
+    <p class="disclaimer">
+      These statements have not been evaluated by the Food and Drug Administration. This product is not
+      intended to diagnose, treat, cure, or prevent any disease. Results vary from person to person. This
+      product is not a substitute for medical treatment. If you have erectile or other sexual health
+      concerns, consult your physician before using any supplement.
+    </p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

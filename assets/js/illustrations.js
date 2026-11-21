@@ -98,5 +98,18 @@
       '</svg>';
   }
 
-  window.EREMAX_ASSETS = { icons: icons, portrait: portrait, placeholder: placeholder, transformation: transformation, pouch: pouch, ingredient: ingredient };
+  // Solid black glyphs used inside the gold gradient circles on the offer page.
+  var G = 'viewBox="0 0 24 24" fill="#111"';
+  var glyphs = {
+    flame: '<svg ' + G + '><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3-1-3 0-6 1-9.5z"/></svg>',
+    drop: '<svg ' + G + '><path d="M9 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/><path d="M17 8c1.6 2.2 3 4 3 5.6a3 3 0 0 1-6 0c0-1.6 1.4-3.4 3-5.6z"/></svg>',
+    heart: '<svg ' + G + '><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg>',
+    bolt: '<svg ' + G + '><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+    up: '<svg ' + G + '><path d="M12 3l8 9h-5v9H9v-9H4z"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    crown: '<svg ' + G + '><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12.5l4 4 8-9"/></svg>'
+  };
+
+  window.EREMAX_ASSETS = { icons: icons, glyphs: glyphs, portrait: portrait, placeholder: placeholder, transformation: transformation, pouch: pouch, ingredient: ingredient };
 })();

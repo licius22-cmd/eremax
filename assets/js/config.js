@@ -24,13 +24,18 @@ window.EREMAX_CONFIG = {
     redirectUrl: "../oferta/",
     images: {
       logo: "",  // ej. "../assets/images/logo.png"
-      age: ["../assets/images/quiz/age-1.webp", "../assets/images/quiz/age-2.webp", "../assets/images/quiz/age-3.webp",
-            "../assets/images/quiz/age-4.webp", "../assets/images/quiz/age-5.webp", "../assets/images/quiz/age-6.webp"],
-      icons: ["../assets/images/quiz/icons/icon-1.png", "../assets/images/quiz/icons/icon-2.png", "../assets/images/quiz/icons/icon-3.png",
-              "../assets/images/quiz/icons/icon-4.png", "../assets/images/quiz/icons/icon-5.png", "../assets/images/quiz/icons/icon-6.png"],
-      proof: ["../assets/images/quiz/proof-1.jpg", "../assets/images/quiz/proof-2.jpg", "../assets/images/quiz/proof-3.jpg", "../assets/images/quiz/proof-4.jpg"],
-      transformation: "../assets/images/quiz/transformation.png",
-      profile: "../assets/images/quiz/profile.png"
+      // Paso 1 — edad (20-29 → 70+)
+      age: ["../assets/images/quiz/step1-1.webp", "../assets/images/quiz/step1-2.webp", "../assets/images/quiz/step1-3.webp",
+            "../assets/images/quiz/step1-4.webp", "../assets/images/quiz/step1-5.webp", "../assets/images/quiz/step1-6.webp"],
+      // Paso 2 — íconos (carpeta icons/)
+      icons: ["../assets/images/quiz/icons/step2-1.png", "../assets/images/quiz/icons/step2-2.png", "../assets/images/quiz/icons/step2-3.png",
+              "../assets/images/quiz/icons/step2-4.png", "../assets/images/quiz/icons/step2-5.png", "../assets/images/quiz/icons/step2-6.png"],
+      // Paso 7 — prueba social
+      proof: ["../assets/images/quiz/step7-1.webp", "../assets/images/quiz/step7-2.webp", "../assets/images/quiz/step7-3.webp", "../assets/images/quiz/step7-4.png"],
+      // Paso 11 — motivacional
+      transformation: "../assets/images/quiz/step11-1.webp",
+      // Paso 14 — resumen
+      profile: "../assets/images/quiz/step14-1.webp"
     }
   },
 

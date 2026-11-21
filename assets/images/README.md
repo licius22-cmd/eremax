@@ -3,14 +3,14 @@
 Envie os arquivos com **exatamente** estes nomes. Enquanto um arquivo não existir, o site mostra a ilustração padrão no lugar.
 Para trocar nomes ou formatos, edite os caminhos em `assets/js/config.js`.
 
-## `quiz/`
-| Etapa | Arquivo | Dica |
-|---|---|---|
-| 1 – Idade | `age-1.webp` (20-29) … `age-6.webp` (70+) | 600×600, **fundo transparente** (assim o cartão fica todo dourado ao selecionar) |
-| 2 – Frustração | `icons/icon-1.png` … `icons/icon-6.png` | ícones de linha pretos, fundo transparente, 64×64 |
-| 7 – Prova social | `proof-1.jpg` … `proof-4.jpg` | quadradas, 800×800 |
-| 11 – Motivacional | `transformation.png` | 680px de largura |
-| 14 – Resumo | `profile.png` | 360×400, fundo transparente |
+## `quiz/` — padrão `stepX-N` (etapa X, foto N)
+| Etapa | Arquivo |
+|---|---|
+| 1 – Idade | `step1-1.webp` (20-29) … `step1-6.webp` (70+) — fundo transparente |
+| 2 – Frustração | `icons/step2-1.png` … `icons/step2-6.png` — na ordem das opções |
+| 7 – Prova social | `step7-1.webp`, `step7-2.webp`, `step7-3.webp`, `step7-4.png` |
+| 11 – Motivacional | `step11-1.webp` |
+| 14 – Resumo | `step14-1.webp` |
 
 ## `oferta/`
 | Seção | Arquivo | Dica |

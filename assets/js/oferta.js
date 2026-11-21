@@ -36,6 +36,10 @@
   $("footLogo").innerHTML = logoHtml;
   document.querySelectorAll(".brand").forEach(function (e) { e.textContent = C.brand; });
   $("brandUpper").textContent = C.brand.toUpperCase();
+  document.querySelectorAll(".brandUp").forEach(function (e) { e.textContent = C.brand.toUpperCase(); });
+  var GL = A.glyphs;
+  function gCircle(name, cls) { return '<span class="g-circle' + (cls ? " " + cls : "") + '">' + (GL[name] || GL.bolt) + "</span>"; }
+  document.querySelectorAll("[data-glyph]").forEach(function (e) { e.innerHTML = GL[e.dataset.glyph] || ""; });
   document.querySelectorAll(".gdays").forEach(function (e) { e.textContent = C.guaranteeDays; });
   $("gDays").textContent = C.guaranteeDays;
   $("year").textContent = new Date().getFullYear();
@@ -78,9 +82,8 @@
   /* ---------- info ---------- */
   $("pTitle").textContent = O.productTitle;
   $("pSub").textContent = O.productSubtitle;
-  var bIcons = ["🔥", "💧", "⚡", "⏱️"];
-  $("benefits").innerHTML = O.benefits.map(function (b, i) {
-    return '<li><span class="b-ico">' + bIcons[i % 4] + "</span><div><b>" + b.title + "</b>" + (b.text ? "<p>" + b.text + "</p>" : "") + "</div></li>";
+  $("benefits").innerHTML = O.benefits.map(function (b) {
+    return "<li>" + gCircle(b.icon) + "<div><b>" + b.title + "</b>" + (b.text ? "<p>" + b.text + "</p>" : "") + "</div></li>";
   }).join("");
 
   $("factsBtn").onclick = function () {
@@ -114,8 +117,7 @@
     $("atcBtn").href = url; $("stickyBtn").href = url;
     $("atcPrice").textContent = money(current.price);
     $("atcCompare").textContent = money(current.compareAt);
-    $("stickyTitle").textContent = current.title;
-    $("stickyPrice").innerHTML = money(current.price) + " <s>" + money(current.compareAt) + "</s>";
+
   }
   paintBundles();
   [$("atcBtn"), $("stickyBtn")].forEach(function (b) {
@@ -161,12 +163,31 @@
     hydrate(es);
   }
 
+  /* ---------- por qué ---------- */
+  $("whyList").innerHTML = (O.why || []).map(function (w) {
+    return '<div class="why-card">' + gCircle(w.icon, "lg") + "<div><h4>" + w.title + "</h4><p>" + w.text + "</p></div></div>";
+  }).join("");
+
+  /* ---------- encuesta (opcional) ---------- */
+  if (O.survey && O.survey.items && O.survey.items.length) {
+    var sv = $("surveySection"); sv.hidden = false;
+    sv.innerHTML = '<h2 class="sec-title light">LO QUE NOS DIJERON LOS HOMBRES EN NUESTRA ENCUESTA</h2><div class="sv-list">' +
+      O.survey.items.map(function (x) { return '<div class="sv-item"><b>' + x.pct + "</b><span>" + x.text + "</span></div>"; }).join("") +
+      '</div><p class="sv-note">' + (O.survey.note || "") + "</p>";
+  }
+
+  /* ---------- para ti si ---------- */
+  $("forList").querySelectorAll("li").forEach(function (li) { li.insertAdjacentHTML("afterbegin", gCircle("check", "sm")); });
+  if (O.rightForYouImage) {
+    $("forImg").innerHTML = smartImg(O.rightForYouImage, A.placeholder("oferta/right-for-you.webp", 1), "");
+  } else { $("forImg").remove(); }
+
   /* ---------- ingredientes ---------- */
   $("ingGrid").innerHTML = O.ingredients.map(function (x, i) {
-    return '<div class="ing"><span class="ing-img">' + smartImg("../assets/images/oferta/ingredient-" + (i + 1) + ".png", A.ingredient(x.name, i), x.name) +
+    return '<div class="ing slide"><span class="ing-img">' + smartImg("../assets/images/oferta/ingredient-" + (i + 1) + ".png", A.ingredient(x.name, i), x.name) +
       "</span><h4>" + x.name + "</h4><p>" + x.text + "</p></div>";
   }).join("");
-  $("trustBadges").innerHTML = O.badges.map(function (b) { return '<span class="tb">✓ ' + b + "</span>"; }).join("");
+  $("trustBadges").innerHTML = O.badges.map(function (b) { return '<span class="tb"><i>✓</i> ' + b + "</span>"; }).join("");
 
   /* ---------- reseñas ---------- */
   $("reviewsTitle").textContent = "MIRA CÓMO MÁS DE " + C.customersCount + " HOMBRES RECUPERARON SU CONFIANZA";
@@ -174,11 +195,19 @@
     return { name: "[Nombre del cliente]", title: "[Título de la reseña " + n + "]", text: "[Pega aquí una reseña real de un cliente verificado — config.js → oferta.reviews]", placeholder: true };
   });
   $("reviews").innerHTML = reviews.map(function (r, i) {
-    return '<div class="review' + (r.placeholder ? " ph" : "") + '">' +
-      (r.photo ? '<span class="rv-photo">' + smartImg(r.photo, "", r.name) + "</span>" : "") +
-      '<div class="rv-head"><b>' + r.name.toUpperCase() + '</b><span class="rv-verified">✓ Cliente verificado</span></div>' +
-      '<div class="stars">★★★★★</div><h4>' + r.title + "</h4><p>" + r.text + "</p></div>";
+    return '<div class="review slide' + (r.placeholder ? " ph" : "") + '">' +
+      '<span class="rv-photo">' + smartImg(r.photo || "", A.placeholder("oferta/review-" + (i + 1) + ".jpg", i), r.name) + "</span>" +
+      '<div class="rv-body"><div class="rv-head"><b>' + r.name.toUpperCase() + '</b><span class="rv-verified"><i>✓</i> Cliente verificado</span></div>' +
+      '<div class="rv-stars">★★★★★</div><span class="rv-tag">' + r.title + "</span><p>" + r.text + "</p></div></div>";
   }).join("");
+
+  /* ---------- carruseles ---------- */
+  document.querySelectorAll(".c-nav").forEach(function (nav) {
+    var car = $(nav.dataset.for);
+    function step(dir) { var sl = car.querySelector(".slide"); car.scrollBy({ left: dir * (sl ? sl.offsetWidth + 14 : 300), behavior: "smooth" }); }
+    nav.querySelector(".prev").onclick = function () { step(-1); };
+    nav.querySelector(".next").onclick = function () { step(1); };
+  });
 
   /* ---------- pie ---------- */
   var co = O.company;
@@ -188,6 +217,10 @@
   $("mailLink").href = "mailto:" + co.email;
 
   /* ---------- barra fija ---------- */
+  var photos = (O.reviews || []).filter(function (r) { return r.photo; }).slice(0, 3);
+  $("avatars").innerHTML = photos.map(function (r) { return '<img src="' + r.photo + '" alt="">'; }).join("");
+  if (!photos.length) $("avatars").remove();
+  $("joinText").textContent = "ÚNETE A MÁS DE " + C.customersCount + " CLIENTES FELICES";
   var sticky = $("stickyAtc");
   window.addEventListener("scroll", function () {
     var r = $("atcBtn").getBoundingClientRect();

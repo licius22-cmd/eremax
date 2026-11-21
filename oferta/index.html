@@ -73,7 +73,7 @@
 
       <p class="delivery"><span class="pulse-dot"></span>Pide hoy y recíbelo el <u id="deliveryDate"></u></p>
 
-      <a class="atc" id="atcBtn" href="#">Agregar al carrito <span class="atc-sep">|</span> <b id="atcPrice"></b> <s id="atcCompare"></s></a>
+      <a class="atc btn-gold" id="atcBtn" href="#">Agregar al carrito <span class="atc-sep">|</span> <b id="atcPrice"></b> <s id="atcCompare"></s></a>
       <p class="sub-note" id="subNote"></p>
 
       <div class="guarantee-box">
@@ -89,27 +89,38 @@
       <div class="tab-panel" id="tabPanel"></div>
     </section>
 
-    <!-- Opinión experta (solo si configuras config.oferta.expert) -->
-    <section class="expert-section" id="expertSection" hidden></section>
-
     <!-- Línea de tiempo -->
     <section class="timeline-section">
       <h2 class="sec-title">QUÉ ESPERAR: TU LÍNEA DE TIEMPO</h2>
+      <div class="gold-rule"><span></span></div>
       <div class="tl">
-        <div class="tl-item"><div class="tl-icon">⚡</div><div><span class="tl-day">DÍA 7</span><h4>Arranque</h4>
-          <ul><li>Creas el hábito de una gomita al día</li><li>Muchos hombres notan primero más energía</li><li>Empiezas a prestar atención a tu deseo</li></ul></div></div>
-        <div class="tl-item"><div class="tl-icon">🔥</div><div><span class="tl-day">DÍA 30</span><h4>Ella lo nota</h4>
-          <ul><li>Tu rutina ya es constante</li><li>Te sientes con más confianza en la cama</li><li>Más ganas de buscarla</li></ul></div></div>
-        <div class="tl-item"><div class="tl-icon">👑</div><div><span class="tl-day">DÍA 90</span><h4>Tu nueva normalidad</h4>
-          <ul><li>Completaste el plan de 12 semanas</li><li>Compara cómo te sientes frente al día 1</li><li>Mantén la rutina para seguir en tu mejor nivel</li></ul></div></div>
+        <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="bolt"></div><div><span class="tl-day">DÍA 7</span><h4>Arranque</h4></div></div>
+          <ul><li>Creas el hábito de una gomita al día</li><li>Muchos hombres notan primero más energía</li><li>Empiezas a prestar atención a tu deseo</li></ul></div>
+        <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="flame"></div><div><span class="tl-day">DÍA 30</span><h4>Ella lo nota</h4></div></div>
+          <ul><li>Tu rutina ya es constante</li><li>Te sientes con más confianza en la cama</li><li>Más ganas de buscarla</li></ul></div>
+        <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="crown"></div><div><span class="tl-day">DÍA 90</span><h4>Tu nueva normalidad</h4></div></div>
+          <ul><li>Completaste el plan de 12 semanas</li><li>Compara cómo te sientes frente al día 1</li><li>Mantén la rutina para seguir en tu mejor nivel</li></ul></div>
       </div>
       <p class="tl-note">Los resultados varían de persona a persona.</p>
     </section>
 
+    <!-- Por qué los hombres eligen -->
+    <section class="why-section">
+      <h2 class="sec-title light">POR QUÉ LOS HOMBRES ELIGEN<br><span id="brandUpper"></span></h2>
+      <p class="why-sub">La fórmula diaria pensada para apoyar el estrés, la energía y el flujo sanguíneo, todo a la vez.</p>
+      <div class="why-list" id="whyList"></div>
+    </section>
+
+    <!-- Opinión experta (solo si configuras config.oferta.expert) -->
+    <section class="expert-section" id="expertSection" hidden></section>
+
+    <!-- Encuesta (solo si configuras config.oferta.survey) -->
+    <section class="survey-section" id="surveySection" hidden></section>
+
     <!-- Para ti si... -->
     <section class="for-you">
-      <h2 class="sec-title"><span id="brandUpper"></span> ES<br>PARA TI SI...</h2>
-      <ul class="for-list">
+      <h2 class="sec-title"><span class="brandUp"></span> ES<br>PARA TI SI...</h2>
+      <ul class="for-list" id="forList">
         <li>Ya no tienes erecciones tan firmes como antes</li>
         <li>Sientes que perdiste el deseo</li>
         <li>Pierdes la erección a mitad del camino o te cuesta mantenerla</li>
@@ -117,25 +128,29 @@
         <li>Probaste otras soluciones y no funcionaron, tuvieron efectos secundarios o creaste dependencia</li>
         <li>Quieres apoyar tu circulación de forma natural, sin depender de calcular la hora de una pastilla</li>
       </ul>
+      <div class="for-img" id="forImg"></div>
     </section>
 
     <!-- Ingredientes -->
     <section class="ingredients-section" id="ingredientes">
       <h2 class="sec-title">INGREDIENTES PODEROSOS PARA TU MEJOR RENDIMIENTO</h2>
-      <div class="ing-grid" id="ingGrid"></div>
-      <a class="atc shop-now" href="#bundles">COMPRAR AHORA</a>
+      <div class="carousel" id="ingCarousel"><div class="track" id="ingGrid"></div></div>
+      <div class="c-nav" data-for="ingCarousel"><button class="c-btn prev">‹</button><button class="c-btn next">›</button></div>
+      <a class="btn-gold shop-now" href="#bundles">COMPRAR AHORA</a>
       <div class="trust-badges" id="trustBadges"></div>
     </section>
 
     <!-- Reseñas -->
     <section class="reviews-section" id="resenas">
+      <div class="rv-stars-top">★★★★★</div>
       <h2 class="sec-title" id="reviewsTitle"></h2>
-      <div class="reviews" id="reviews"></div>
+      <div class="carousel" id="rvCarousel"><div class="track" id="reviews"></div></div>
+      <div class="c-nav" data-for="rvCarousel"><button class="c-btn prev">‹</button><button class="c-btn next">›</button></div>
     </section>
 
     <!-- FAQ -->
     <section class="faq-section" id="faq">
-      <h2 class="sec-title">PREGUNTAS FRECUENTES</h2>
+      <h2 class="sec-title big">PREGUNTAS FRECUENTES</h2>
       <div class="faq-list">
         <details open><summary>¿En cuánto tiempo notaré la diferencia?</summary><p>Cada persona es diferente. Muchos hombres notan primero un cambio en su energía; recomendamos seguir la rutina de forma constante durante el plan completo de 12 semanas. La constancia lo es todo: una gomita, todos los días.</p></details>
         <details><summary>¿Qué lo hace diferente de un shilajit o una maca baratos?</summary><p>Combina varios ingredientes en una sola gomita diaria, en lugar de un solo ingrediente aislado, para apoyar varios aspectos a la vez: circulación, energía, deseo y manejo del estrés.</p></details>
@@ -172,14 +187,14 @@
       <a id="mailLink" href="#">Contacto</a>
     </div>
     <div class="f-col" id="companyBox"></div>
-    <p class="f-disclaimer">*AVISO MÉDICO Y DE SALUD: Los resultados pueden variar. El contenido y los productos presentados aquí no están destinados a diagnosticar, tratar, curar ni prevenir ninguna enfermedad. Esta oferta no reemplaza medicamentos ni tratamientos indicados por un médico o profesional de la salud. Recomendamos consultar a un médico antes de usar cualquier producto o seguir cualquier recomendación de esta página. La FDA no ha evaluado estas declaraciones.</p>
     <p class="f-copy">© <span id="year"></span>, <span class="brand"></span>.</p>
   </footer>
+  <div class="f-disclaimer-wrap"><p class="f-disclaimer">*AVISO MÉDICO Y DE SALUD: Los resultados pueden variar. El contenido y los productos presentados aquí no están destinados a diagnosticar, tratar, curar ni prevenir ninguna enfermedad. Esta oferta no reemplaza medicamentos ni tratamientos indicados por un médico o profesional de la salud. Recomendamos consultar a un médico antes de usar cualquier producto o seguir cualquier recomendación de esta página. La FDA no ha evaluado estas declaraciones.</p></div>
 
   <!-- Barra fija de compra (móvil) -->
   <div class="sticky-atc" id="stickyAtc">
-    <div><b id="stickyTitle"></b><span id="stickyPrice"></span></div>
-    <a class="atc" id="stickyBtn" href="#">Agregar al carrito</a>
+    <a class="btn-gold" id="stickyBtn" href="#">AGREGAR AL CARRITO</a>
+    <div class="sticky-join"><span class="avatars" id="avatars"></span><span id="joinText"></span></div>
   </div>
 
   <!-- Modal de información nutricional -->

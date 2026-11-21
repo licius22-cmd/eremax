@@ -1,29 +1,34 @@
-# Eremax — Quiz Funnel (español)
+# Eremax — Funil Quiz + Oferta (español)
 
-Funil de quiz estático (HTML/CSS/JS, sem build) em espanhol, no mesmo layout do quiz de referência: fundo bege, dourado,
-barra Black Friday com contador de 2h por visitante, 16 etapas, resumo do perfil, gráfico de 12 semanas e etapa final
-com 3 pop-ups Sí/No antes do botão **Enviar**, que redireciona para a oferta.
+Site estático (HTML/CSS/JS, sem build).
 
-## Arquivos
-- `index.html` — o quiz
-- `offer.html` — página de oferta (3 pacotes, garantia, FAQ) — destino padrão do Enviar
-- `config.js` — **tudo que você edita**: marca, número de clientes, % de sucesso, link de redirect, imagens, pacotes/preços/checkout
-- `assets.js` — ilustrações e ícones padrão (aparecem enquanto as imagens não existem)
-- `script.js` / `style.css` — lógica e design
-- `images/` — suas imagens (veja `images/README.md`)
-- `legal/` — políticas (modelos para preencher)
+```
+/
+├── index.html            → redireciona a raiz do domínio para /quiz/ (mantém UTMs)
+├── quiz/index.html       → quiz de 16 etapas
+├── oferta/index.html     → página de produto/oferta (destino do botão "Enviar")
+├── legal/                → termos, reembolso, privacidade, envio
+└── assets/
+    ├── css/  base.css (compartilhado) · quiz.css · oferta.css
+    ├── js/   config.js (TUDO que você edita) · illustrations.js · quiz.js · oferta.js
+    └── images/
+        ├── quiz/     idades, ícones, prova social, transformação, perfil
+        └── oferta/   galeria, pacotes, supplement facts, ingredientes
+```
 
 ## Antes de rodar
-1. `config.js` → `redirectUrl`, `packages[].checkoutUrl` e preços.
-2. `config.js` → `customersCount` e `successRate`.
-3. Imagens em `images/`.
-4. Políticas em `legal/`.
-5. Pixel / GTM / RedTrack no `<head>` do `index.html` e do `offer.html`.
+1. `assets/js/config.js` → preços e `checkoutUrl` de cada pacote em `oferta.bundles`.
+2. `customersCount`, `successRate`, `oferta.rating` — só números comprováveis.
+3. `oferta.reviews` → avaliações reais de clientes (enquanto vazio, aparecem espaços para preencher).
+4. `oferta.expert` → só se tiver um especialista real que aprovou o produto (senão a seção fica oculta).
+5. `oferta.ingredients` → ajuste à sua fórmula. `oferta.company` → dados da empresa no rodapé.
+6. Imagens → veja `assets/images/README.md`.
+7. Políticas em `legal/`. Pixel / GTM / RedTrack no `<head>` de `quiz/index.html` e `oferta/index.html`.
 
-Parâmetros UTM e click-id da URL do quiz são repassados para o redirect e para todos os links de checkout.
+UTMs e click-id passam do quiz → oferta → checkout.
 
-## Eventos (dataLayer + fbq)
-`quiz_step_view`, `quiz_answer`, `quiz_complete`, `quiz_submit`, `checkout_click` (+ `InitiateCheckout` da Meta na oferta).
+## Eventos (dataLayer / fbq)
+Quiz: `quiz_step_view`, `quiz_answer`, `quiz_complete`, `quiz_submit` · Oferta: `offer_view`, `bundle_select`, `checkout_click` (+ `InitiateCheckout`).
 
 ## Deploy
 Cloudflare Pages (sem build command, output `/`), Netlify, Vercel ou GitHub Pages.

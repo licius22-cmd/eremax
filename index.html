@@ -3,58 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eremax | Find Your Performance Support</title>
-  <meta name="description" content="Take the 60-second Eremax quiz and get a personalized male performance support plan." />
-  <meta name="theme-color" content="#0b1220" />
-  <meta property="og:title" content="Eremax | Find Your Performance Support" />
+  <title>Find Your Performance Support Quiz | Eremax</title>
+  <meta name="description" content="Take the 60-second Eremax quiz and get your personalized performance plan." />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Find Your Performance Support Quiz | Eremax" />
   <meta property="og:description" content="Take the 60-second quiz and get your personalized plan." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <!-- Pixels / GTM / RedTrack: paste your scripts here -->
 </head>
 <body>
-  <div class="promo-bar">
-    <span class="promo-tag">BLACK FRIDAY SALE</span>
-    <span class="promo-text">SAVE UP TO 70% + FREE GIFTS</span>
-    <span class="countdown" id="countdown">
-      <b id="cd-h">00</b><small>Hrs</small>
-      <b id="cd-m">00</b><small>Mins</small>
-      <b id="cd-s">00</b><small>Secs</small>
-    </span>
+  <div class="sale-banner">
+    <div class="sale-banner__content">
+      <p class="sale-banner__heading">BLACK FRIDAY SALE</p>
+      <div class="sale-banner__gold">SAVE 70% + FREE GIFTS</div>
+    </div>
+    <div class="sale-banner__timer" aria-label="Sale countdown">
+      <div class="timer-part"><strong id="cd-h">02</strong><span>Hrs</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-m">00</strong><span>Mins</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-part"><strong id="cd-s">00</strong><span>Secs</span></div>
+    </div>
   </div>
 
-  <header class="site-header">
-    <button class="back-btn" id="backBtn" aria-label="Go back" hidden>&#8592;</button>
-    <a class="logo" href="#" aria-label="Eremax">
-      <span class="logo-mark">E</span><span class="logo-text">EREMAX</span>
-    </a>
-    <span class="step-count" id="stepCount"></span>
-  </header>
+  <div class="quiz-wrapper" id="quiz">
+    <div class="quiz-logo" id="logo"></div>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <button class="back-btn" id="backBtn" aria-label="Go back">&#8592;</button>
+    <div id="stepHost" class="step-host"></div>
+  </div>
 
-  <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-text" id="modalText"></div>
+      <div class="modal-buttons">
+        <button class="modal-btn" data-answer="no">No</button>
+        <button class="modal-btn" data-answer="yes">Yes</button>
+      </div>
+    </div>
+  </div>
 
-  <main class="quiz" id="app" aria-live="polite"></main>
-
-  <footer class="site-footer">
-    <nav class="footer-links">
-      <a href="legal/terms.html">Terms of Service</a>
-      <a href="legal/refund.html">Refund Policy</a>
-      <a href="legal/privacy.html">Privacy Policy</a>
-      <a href="legal/shipping.html">Shipping Policy</a>
+  <footer class="quiz-footer">
+    <nav>
+      <a href="legal/terms.html">Terms</a><a href="legal/refund.html">Refund Policy</a>
+      <a href="legal/privacy.html">Privacy</a><a href="legal/shipping.html">Shipping</a>
       <a href="mailto:support@eremax.com">Contact</a>
     </nav>
-    <p class="company">© <span id="year"></span> Eremax. All rights reserved.</p>
-    <p class="disclaimer">
-      These statements have not been evaluated by the Food and Drug Administration. This product is not
-      intended to diagnose, treat, cure, or prevent any disease. Results vary from person to person. This
-      product is not a substitute for medical treatment. If you have erectile or other sexual health
-      concerns, consult your physician before using any supplement.
+    <p>
+      These statements have not been evaluated by the Food and Drug Administration. This product is not intended to
+      diagnose, treat, cure, or prevent any disease. Results vary. Not a replacement for medical treatment — if you have
+      erectile or other sexual health concerns, consult your physician.
     </p>
+    <p>© <span id="year"></span> Eremax</p>
   </footer>
 
   <script src="config.js"></script>
+  <script src="assets.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

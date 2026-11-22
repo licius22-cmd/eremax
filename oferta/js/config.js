@@ -34,6 +34,8 @@ window.EREMAX_CONFIG = {
     gallery: ["images/1..png", "images/2.jpg", "images/3..png", "images/4.png",
               "images/5.png", "images/6.png", "images/7.png", "images/9.png"],
     supplementFacts: "images/supplement-facts.png",
+    // Imagen del producto en la barra fija de escritorio (al bajar por la página).
+    stickyImage: "images/eremax-2.png",
 
     // icon: flame | drop | heart | bolt | up | clock | crown
     benefits: [

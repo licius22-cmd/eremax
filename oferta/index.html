@@ -33,29 +33,12 @@
 
   <!-- Encabezado -->
   <header class="pdp-header">
-    <button class="icon-btn" id="menuBtn" aria-label="Menú">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
+    <span class="icon-btn" id="menuBtn" aria-hidden="true"></span>
     <div class="quiz-logo" id="logo"></div>
-    <nav class="top-nav">
-      <a href="#bundles">Comprar ahora</a>
-      <a href="#ingredientes">Ingredientes</a>
-      <a href="#resenas">Reseñas</a>
-      <a href="#faq">Preguntas frecuentes</a>
-      <a class="nav-mail" href="mailto:support@eremax.com">Contacto</a>
-    </nav>
     <button class="icon-btn" id="cartBtn" aria-label="Carrito">
       <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
     </button>
   </header>
-  <nav class="side-menu" id="sideMenu">
-    <button class="icon-btn close" id="menuClose" aria-label="Cerrar">✕</button>
-    <a href="#bundles">Comprar ahora</a>
-    <a href="#ingredientes">Ingredientes</a>
-    <a href="#resenas">Reseñas</a>
-    <a href="#faq">Preguntas frecuentes</a>
-    <a href="mailto:support@eremax.com">Contacto</a>
-  </nav>
 
   <main class="pdp-main">
     <!-- Aviso de perfil (opcional, config.oferta.profilePill) -->
@@ -108,9 +91,6 @@
 
     <!-- Logos de prensa (solo si config.oferta.press tiene logos reales) -->
     <section class="press-section" id="pressSection" hidden><p>Visto en:</p><div class="press-track" id="pressTrack"></div></section>
-
-    <!-- Mejor juntos (solo si config.oferta.together) -->
-    <section class="together-section" id="togetherSection" hidden></section>
 
     <!-- Línea de tiempo -->
     <section class="timeline-section">

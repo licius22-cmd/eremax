@@ -2,7 +2,7 @@
   "use strict";
   var C = window.EREMAX_CONFIG, O = C.oferta, A = window.EREMAX_ASSETS;
   var $ = function (id) { return document.getElementById(id); };
-  var money = function (n) { return O.currency + Number(n).toFixed(2).replace(/\.00$/, ""); };
+  var money = function (n) { var s = Number(n).toFixed(2); if (O.decimalSep) s = s.replace(".", O.decimalSep); return O.currency + s; };
 
   function track(name, data) {
     try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, data || {})); } catch (e) {}
@@ -51,10 +51,7 @@
   $("gDays").textContent = C.guaranteeDays;
   $("year").textContent = new Date().getFullYear();
 
-  /* ---------- menú ---------- */
-  $("menuBtn").onclick = function () { $("sideMenu").classList.add("open"); };
-  $("menuClose").onclick = function () { $("sideMenu").classList.remove("open"); };
-  $("sideMenu").querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { $("sideMenu").classList.remove("open"); }); });
+  /* ---------- carrito ---------- */
   $("cartBtn").onclick = function () { $("bundles").scrollIntoView({ behavior: "smooth" }); };
 
   /* ---------- barra superior ---------- */
@@ -138,7 +135,7 @@
         '<span class="b-main"><span class="radio"></span>' +
         '<span class="b-img">' + smartImg(b.image, A.pouch(C.brand, 0), "") + "</span>" +
         '<span class="b-txt"><b>' + b.title + "</b><small>" + b.sub + "</small></span>" +
-        '<span class="b-price"><b>' + money(b.price) + "</b><s>" + money(b.compareAt) + "</s></span></span>" +
+        '<span class="b-price"><b>' + money(b.price) + "</b>" + (b.compareAt ? "<s>" + money(b.compareAt) + "</s>" : "") + "</span></span>" +
         (on && b.gift ? '<span class="b-gift"><span class="b-gift-h">' + CHECK + b.gift.title + "</span>" + (b.gift.text ? "<small>" + b.gift.text + "</small>" : "") + "</span>" : "") +
         "</label></div>";
     }).join("");
@@ -201,15 +198,6 @@
     $("pressSection").hidden = false;
     var logos = O.press.map(function (src) { return /\.(png|jpe?g|webp|svg)$/i.test(src) ? '<img src="' + src + '" alt="">' : '<span class="press-ph">' + src + "</span>"; }).join("");
     $("pressTrack").innerHTML = "<div>" + logos + logos + "</div>";
-  }
-
-  /* ---------- mejor juntos (opcional) ---------- */
-  if (O.together) {
-    var tg = $("togetherSection"); tg.hidden = false;
-    tg.innerHTML = '<h2 class="sec-title light">' + O.together.title + "</h2>" +
-      (O.together.paragraphs || []).map(function (t) { return "<p>" + t + "</p>"; }).join("") +
-      '<div class="tg-img">' + smartImg(O.together.image || "", A.placeholder("oferta/images/together.webp", 2), "") + "</div>" +
-      (O.together.closing ? "<p>" + O.together.closing + "</p>" : "");
   }
 
   /* ---------- intro de la línea de tiempo ---------- */

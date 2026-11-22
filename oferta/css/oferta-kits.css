@@ -18,3 +18,7 @@
   .expert-section .c-nav .c-btn { width: 40px; height: 40px; }
   .expert-section .c-nav .c-btn.prev { margin-left: 47px; }
 }
+
+/* Encuesta como imagen completa (eremax-info.png) */
+.info-banner { background: #0a0a0a; }
+.info-banner img { display: block; width: 100%; max-width: 1440px; height: auto; margin: 0 auto; }

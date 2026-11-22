@@ -114,17 +114,8 @@ window.EREMAX_CONFIG = {
 
     // Sección "Lo que nos dijeron en nuestra encuesta". Solo con datos REALES de tu propia encuesta.
     // null = la sección no aparece.
-    survey: {
-      title: "LO QUE NOS DIJERON LOS HOMBRES EN NUESTRA ENCUESTA",
-      sub: "Combinamos ingredientes tradicionales con investigación moderna para ayudarte a rendir mejor y sentirte imparable.",
-      items: [
-        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" },
-        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" },
-        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" }
-      ],
-      note: "*Según respuestas de [X] clientes.",
-      image: "images/survey-product.webp"
-    },
+    // (La sección de la encuesta ahora es la imagen images/eremax-info.png, directo en el index.html)
+    survey: null,
 
     // Imagen debajo de "Es para ti si…" (antes/después, ancho completo).
     rightForYouImage: "images/right-for-you.webp",

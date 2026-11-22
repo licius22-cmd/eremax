@@ -161,10 +161,11 @@ window.EREMAX_CONFIG = {
 
     // Datos de la empresa para el pie de página.
     company: {
-      legalName: "[Nombre legal de la empresa]",
-      number: "[Número de registro]",
-      address: "[Dirección comercial]",
-      phone: "[Teléfono]",
+      // Vacío ("") = el campo no aparece en el pie de página.
+      legalName: "",
+      number: "",
+      address: "",
+      phone: "",
       email: "support@eremax.com"
     }
   }

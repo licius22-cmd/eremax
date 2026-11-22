@@ -27,9 +27,10 @@ window.EREMAX_CONFIG = {
       // Paso 1 — edad (20-29 → 70+)
       age: ["../assets/images/quiz/step1-1.webp", "../assets/images/quiz/step1-2.webp", "../assets/images/quiz/step1-3.webp",
             "../assets/images/quiz/step1-4.webp", "../assets/images/quiz/step1-5.webp", "../assets/images/quiz/step1-6.webp"],
-      // Paso 2 — íconos (carpeta icons/)
-      icons: ["../assets/images/quiz/icons/step2-1.png", "../assets/images/quiz/icons/step2-2.png", "../assets/images/quiz/icons/step2-3.png",
-              "../assets/images/quiz/icons/step2-4.png", "../assets/images/quiz/icons/step2-5.png", "../assets/images/quiz/icons/step2-6.png"],
+      // Paso 2 — íconos propios (vacío = se usan los íconos dibujados).
+      // Para usar los tuyos: súbelos a assets/images/quiz/icons/ y pon aquí, por ejemplo,
+      // "../assets/images/quiz/icons/step2-1.png", ... hasta step2-6.png
+      icons: [],
       // Paso 7 — prueba social
       proof: ["../assets/images/quiz/step7-1.webp", "../assets/images/quiz/step7-2.webp", "../assets/images/quiz/step7-3.webp", "../assets/images/quiz/step7-4.png"],
       // Paso 11 — motivacional

@@ -48,21 +48,18 @@ window.EREMAX_CONFIG = {
     // gift = franja que aparece dentro del paquete seleccionado (null = sin franja).
     bundles: [
       { id: "1", title: "1 Pote", sub: "1 pote de Eremax", price: 39.90, compareAt: null, badge: "", selected: true,
-        image: "images/bundle-1.webp", checkoutUrl: "https://example.com/checkout?pkg=1", gift: null },
+        image: "images/eremax-1.png", checkoutUrl: "https://example.com/checkout?pkg=1", gift: null },
       { id: "2", title: "2 Potes", sub: "2 potes de Eremax", price: 69.90, compareAt: null, badge: "MÁS POPULAR",
-        image: "images/bundle-2.webp", checkoutUrl: "https://example.com/checkout?pkg=2", gift: null },
+        image: "images/eremax-2.png", checkoutUrl: "https://example.com/checkout?pkg=2", gift: null },
       { id: "3", title: "3 Potes", sub: "3 potes de Eremax + Envío gratis", price: 89.99, compareAt: null, badge: "MEJOR VALOR",
-        image: "images/bundle-3.webp", checkoutUrl: "https://example.com/checkout?pkg=3",
+        image: "images/eremax-3.png", checkoutUrl: "https://example.com/checkout?pkg=3",
         gift: { title: "ENVÍO GRATIS", text: "" } }
     ],
 
     // Cuadro "REGALOS DESBLOQUEADOS". unlock = cantidad de potes que lo desbloquea.
     // Déjalo vacío ([]) si no ofreces regalos.
     giftsTitle: "REGALOS DESBLOQUEADOS",
-    gifts: [
-      { name: "[Regalo 1]", value: "$[XX]", unlock: "2", image: "images/gift-1.webp" },
-      { name: "[Regalo 2]", value: "$[XX]", unlock: "3", image: "images/gift-2.webp" }
-    ],
+    gifts: [],
     // Ventajas con check bajo el botón de compra ([] = no aparece).
     perks: ["Envío con seguimiento", "Garantía de 60 días"],
     currency: "$",
@@ -91,7 +88,7 @@ window.EREMAX_CONFIG = {
     comparison: ["Funciona todos los días", "Sin receta médica", "Buen sabor"],
 
     // Logos de prensa REALES (imágenes en images/press-*.png). Vacío = la franja "Visto en" no aparece.
-    press: ["[Logo 1]", "[Logo 2]", "[Logo 3]", "[Logo 4]", "[Logo 5]"],
+    press: [],
 
     // Párrafos antes de la línea de tiempo ([] = no aparece).
     timelineIntro: [

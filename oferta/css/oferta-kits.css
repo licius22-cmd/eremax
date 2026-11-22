@@ -1,0 +1,10 @@
+/* Fotos de los kits (eremax-1/2/3.png): recorta el espacio transparente y centra el pote */
+.b-img { width: 70px; height: 70px; max-width: none; overflow: hidden; display: flex; justify-content: center; }
+.b-img .smart-img { display: block; width: 70px; height: 100%; }
+.b-img .smart-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.bundle[data-id="1"] .b-img .smart-img { width: 38px; }
+@media (min-width: 990px) {
+  .b-img { width: 82px; height: 82px; }
+  .b-img .smart-img { width: 82px; }
+  .bundle[data-id="1"] .b-img .smart-img { width: 44px; }
+}

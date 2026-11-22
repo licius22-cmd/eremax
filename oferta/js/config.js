@@ -134,8 +134,8 @@ window.EREMAX_CONFIG = {
       { name: "Azafrán", dose: "[mg]", image: "images/azafran.webp", text: "Un extracto tradicional usado para apoyar el estado de ánimo y el deseo." },
       { name: "Panax Ginseng", dose: "[mg]", image: "images/panax.webp", text: "Una raíz adaptógena usada tradicionalmente para apoyar la energía y la circulación." },
       { name: "Raíz de Maca", dose: "[mg]", image: "images/maca.webp", text: "Un superalimento andino asociado al apoyo de la libido y la vitalidad." },
-      { name: "Ashwagandha", dose: "[mg]", text: "Un adaptógeno que ayuda al cuerpo a manejar el estrés del día a día." },
-      { name: "Shilajit", dose: "[mg]", text: "Una resina mineral rica en ácido fúlvico y minerales traza." }
+      { name: "Ashwagandha", dose: "[mg]", image: "images/ashwagandha.webp", text: "Un adaptógeno que ayuda al cuerpo a manejar el estrés del día a día." },
+      { name: "Shilajit", dose: "[mg]", image: "images/Shilajit.webp", text: "Una resina mineral rica en ácido fúlvico y minerales traza." }
     ],
 
     // Pop-up "Toca para soltar" (juego de premio). code = cupón que ya existe en tu checkout;

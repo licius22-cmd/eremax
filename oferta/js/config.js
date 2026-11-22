@@ -102,6 +102,7 @@ window.EREMAX_CONFIG = {
     // Reseñas REALES de clientes verificados. Mientras esté vacío, se muestran espacios para completar.
     reviews: [
       // { name: "Nombre A.", title: "Título de la reseña", text: "Texto de la reseña…", photo: "images/review-1.jpg" }
+      { name: "Marcus T.", title: "No puede quitarme las manos de encima.", text: "Tengo 46 años y mi esposa prácticamente había dejado de tomar la iniciativa. Llegamos a tener relaciones quizás una vez al mes, y hasta eso resultaba incómodo. Hace unas 6 semanas empecé a tomar el Eremax y todo cambió por completo. Tengo una erección más firme que la que tenía desde que estaba en mis 30, aguanto mucho más tiempo y ahora es ella quien me lleva a rastras al dormitorio. El sábado pasado me despertó a las 6 de la mañana. Y no precisamente para hablar. Antes, esta mujer solía fingir dolores de cabeza; ahora, pone alarmas.", photo: "images/social1.png" }
     ],
 
     // Sección negra "Por qué los hombres eligen…" (4 tarjetas con borde dorado).

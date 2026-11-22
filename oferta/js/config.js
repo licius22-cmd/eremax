@@ -139,7 +139,7 @@ window.EREMAX_CONFIG = {
     // Pop-up "Toca para soltar" (juego de premio). code = cupón que ya existe en tu checkout;
     // se añade a los links de compra como ?{couponParam}=CÓDIGO. enabled:false = desactivado.
     popup: {
-      enabled: true,
+      enabled: false,   // pop-up desactivado
       showAfterScroll: 700,     // píxeles de scroll antes de aparecer
       showAfterSeconds: 0,      // o segundos (0 = solo por scroll)
       kicker: "OFERTA BLACK FRIDAY",

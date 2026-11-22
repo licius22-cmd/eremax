@@ -9,7 +9,7 @@ window.EREMAX_CONFIG = {
   guaranteeDays: 60,
 
   // Número de prueba social (valoración, reseñas y barra fija). Usa solo un número comprobable.
-  customersCount: "[XX,XXX]",
+  customersCount: "207,500",
 
   // Pasa los parámetros UTM / click-id de la URL a la oferta y a los checkouts.
   passQueryParams: true,
@@ -26,7 +26,7 @@ window.EREMAX_CONFIG = {
     productSubtitle: "La fórmula natural más completa para un rendimiento más firme, un deseo que no se apaga y la resistencia para toda la noche.",
 
     // Valoración bajo el título. Pon show:false si aún no tienes reseñas reales.
-    rating: { show: true, score: "[X.X]" },
+    rating: { show: true, score: "4.8" },
     // Etiqueta redondeada bajo la valoración (null = no aparece). Usa solo afirmaciones comprobables.
     formulaBadge: { label: "NUEVA FÓRMULA:", text: "una gomita al día, todos los días" },
 
@@ -122,7 +122,7 @@ window.EREMAX_CONFIG = {
     survey: null,
 
     // Imagen debajo de "Es para ti si…" (antes/después, ancho completo).
-    rightForYouImage: "images/right-for-you.webp",
+    rightForYouImage: "images/imagem01.webp",
 
     // Ingredientes (ajústalos a tu fórmula real).
     // dose = dosis por porción (pestaña Ingredientes); short = beneficio corto para la tabla.

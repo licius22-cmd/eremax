@@ -11,3 +11,10 @@
 
 /* Galería del topo: la foto entera, sin recortar (fondo oscuro si no es cuadrada) */
 .gallery-main .smart-img img { object-fit: contain; background: #111; }
+
+/* Flechas de los especialistas: debajo de la foto (no encima), centradas con ella */
+@media (min-width: 990px) {
+  .expert-section .c-nav { margin: 20px auto 0; padding-left: 0; width: 884px; max-width: 100%; justify-content: flex-start; }
+  .expert-section .c-nav .c-btn { width: 40px; height: 40px; }
+  .expert-section .c-nav .c-btn.prev { margin-left: 47px; }
+}

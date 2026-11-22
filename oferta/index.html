@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/oferta.css" />
   <link rel="stylesheet" href="css/oferta-ajustes.css" />
+  <link rel="stylesheet" href="css/oferta-desktop.css" />
   <!-- Pixel / GTM / RedTrack: pega tus scripts aquí -->
 </head>
 <body class="pdp">
@@ -36,6 +37,13 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <div class="quiz-logo" id="logo"></div>
+    <nav class="top-nav">
+      <a href="#bundles">Comprar ahora</a>
+      <a href="#ingredientes">Ingredientes</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a class="nav-mail" href="mailto:support@eremax.com">Contacto</a>
+    </nav>
     <button class="icon-btn" id="cartBtn" aria-label="Carrito">
       <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
     </button>
@@ -53,6 +61,8 @@
     <!-- Aviso de perfil (opcional, config.oferta.profilePill) -->
     <div class="profile-pill" id="profilePill"><span class="dot"></span><span id="profileText"></span></div>
 
+    <div class="pdp-top">
+    <div class="pdp-media">
     <!-- Galería -->
     <section class="gallery">
       <div class="gallery-main" id="galleryMain"></div>
@@ -60,6 +70,7 @@
       <button class="g-arrow next" id="gNext" aria-label="Siguiente">›</button>
     </section>
     <div class="thumbs" id="thumbs"></div>
+    </div>
 
     <!-- Información del producto -->
     <section class="product-info">
@@ -93,6 +104,7 @@
       <div class="tabs" id="tabs"></div>
       <div class="tab-panel" id="tabPanel"></div>
     </section>
+    </div>
 
     <!-- Logos de prensa (solo si config.oferta.press tiene logos reales) -->
     <section class="press-section" id="pressSection" hidden><p>Visto en:</p><div class="press-track" id="pressTrack"></div></section>
@@ -118,7 +130,7 @@
 
     <!-- Por qué los hombres eligen -->
     <section class="why-section">
-      <h2 class="sec-title light">POR QUÉ LOS HOMBRES ELIGEN<br><span id="brandUpper"></span></h2>
+      <h2 class="sec-title light">POR QUÉ LOS HOMBRES ELIGEN <br><span id="brandUpper"></span></h2>
       <p class="why-sub">La fórmula diaria pensada para apoyar el estrés, la energía y el flujo sanguíneo, todo a la vez.</p>
       <div class="why-list" id="whyList"></div>
     </section>
@@ -215,6 +227,7 @@
 
   <!-- Barra fija de compra (móvil) -->
   <div class="sticky-atc" id="stickyAtc">
+    <div class="sticky-prod"><span class="sp-img" id="spImg"></span><div><div class="sp-rating" id="spRating"></div><b class="sp-name" id="spName"></b></div></div>
     <a class="btn-gold" id="stickyBtn" href="#">AGREGAR AL CARRITO - <span id="stickyPrice"></span></a>
     <div class="sticky-join"><span class="avatars" id="avatars"></span><span id="joinText"></span></div>
   </div>
@@ -238,5 +251,6 @@
   <script src="js/config.js"></script>
   <script src="js/illustrations.js"></script>
   <script src="js/oferta.js"></script>
+  <script src="js/oferta-desktop.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/oferta.css" />
+  <link rel="stylesheet" href="css/oferta-ajustes.css" />
   <!-- Pixel / GTM / RedTrack: pega tus scripts aquí -->
 </head>
 <body class="pdp">
@@ -122,8 +123,12 @@
       <div class="why-list" id="whyList"></div>
     </section>
 
-    <!-- Opinión experta (solo si configuras config.oferta.expert) -->
-    <section class="expert-section" id="expertSection" hidden></section>
+    <!-- Especialistas (config.oferta.experts) -->
+    <section class="expert-section" id="expertSection" hidden>
+      <h2 class="sec-title">RECOMENDADO POR ESPECIALISTAS EN SALUD MASCULINA</h2>
+      <div class="carousel" id="exCarousel"><div class="track" id="exTrack"></div></div>
+      <div class="c-nav plain" data-for="exCarousel"><button class="c-btn prev">‹</button><button class="c-btn next">›</button></div>
+    </section>
 
     <!-- Encuesta (solo si configuras config.oferta.survey) -->
     <section class="survey-section" id="surveySection" hidden></section>
@@ -181,15 +186,6 @@
     </section>
   </main>
 
-  <!-- Banner de suscripción -->
-  <section class="join-banner">
-    <h2 id="joinTitle"></h2>
-    <p>Suscríbete y recibe primero nuestras ofertas, novedades y consejos para sacar el máximo provecho de tu rutina.</p>
-    <form class="subscribe" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Listo!';">
-      <input type="email" placeholder="E-mail" required><button>Suscribirme</button>
-    </form>
-  </section>
-
   <!-- Pie de página -->
   <footer class="pdp-footer">
     <div class="f-col f-brand">
@@ -225,6 +221,19 @@
 
   <!-- Modal de información nutricional -->
   <div class="facts-modal" id="factsModal"><div class="facts-box"><button class="icon-btn close" id="factsClose">✕</button><div id="factsImg"></div></div></div>
+
+  <!-- Pop-up "Toca para soltar" (config.oferta.popup) -->
+  <div class="drop-pop" id="dropPop" hidden>
+    <button class="dp-close" id="dpClose" aria-label="Cerrar">✕</button>
+    <div class="dp-inner">
+      <p class="dp-kicker" id="dpKicker"></p>
+      <h2 class="dp-title" id="dpTitle">TOCA PARA SOLTAR</h2>
+      <button class="dp-btn" id="dpBtn">PRUEBA TU SUERTE</button>
+      <div class="dp-board" id="dpBoard"><div class="dp-ball" id="dpBall"></div></div>
+      <div class="dp-slots" id="dpSlots"></div>
+      <div class="dp-result" id="dpResult" hidden></div>
+    </div>
+  </div>
 
   <script src="js/config.js"></script>
   <script src="js/illustrations.js"></script>

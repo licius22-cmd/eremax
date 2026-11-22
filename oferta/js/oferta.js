@@ -245,7 +245,7 @@
   /* ---------- para ti si ---------- */
   $("forList").querySelectorAll("li").forEach(function (li) { li.insertAdjacentHTML("afterbegin", gCircle("check", "sm")); });
   if (O.rightForYouImage) {
-    $("forImg").innerHTML = smartImg(O.rightForYouImage, A.placeholder("oferta/right-for-you.webp", 1), "");
+    $("forImg").innerHTML = smartImg(O.rightForYouImage, A.placeholder("oferta/imagem01.webp", 1), "");
   } else { $("forImg").remove(); }
 
   /* ---------- ingredientes ---------- */

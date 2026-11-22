@@ -50,11 +50,11 @@ window.EREMAX_CONFIG = {
     // gift = franja que aparece dentro del paquete seleccionado (null = sin franja).
     bundles: [
       { id: "1", title: "1 Pote", sub: "1 pote de Eremax", price: 45.99, compareAt: null, badge: "",
-        image: "images/eremax-1.png", checkoutUrl: "https://example.com/checkout?pkg=1", gift: null },
+        image: "images/eremax-1.png", checkoutUrl: "https://gd-holding.mycartpanda.com/checkout/214601513:1?subscription=4807", gift: null },
       { id: "2", title: "2 Potes", sub: "2 potes de Eremax", price: 79.99, compareAt: null, badge: "MÁS POPULAR", selected: true,
-        image: "images/eremax-2.png", checkoutUrl: "https://example.com/checkout?pkg=2", gift: null },
+        image: "images/eremax-2.png", checkoutUrl: "https://gd-holding.mycartpanda.com/checkout/214613428:1?subscription=4807", gift: null },
       { id: "3", title: "3 Potes", sub: "3 potes de Eremax + Envío gratis", price: 98.99, compareAt: null, badge: "MEJOR VALOR",
-        image: "images/eremax-3.png", checkoutUrl: "https://example.com/checkout?pkg=3",
+        image: "images/eremax-3.png", checkoutUrl: "https://gd-holding.mycartpanda.com/checkout/214614090:1?subscription=4807",
         gift: { title: "ENVÍO GRATIS", text: "" } }
     ],
 

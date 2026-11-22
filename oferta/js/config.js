@@ -44,28 +44,29 @@ window.EREMAX_CONFIG = {
     ],
 
     // Paquetes. El que tiene selected:true aparece marcado al entrar.
+    // id = cantidad de potes. compareAt = precio tachado (déjalo en null para no mostrarlo).
+    // gift = franja que aparece dentro del paquete seleccionado (null = sin franja).
     bundles: [
-      { id: "1", title: "Compra 1", sub: "1 bolsa", price: 69, compareAt: 99, badge: "",
-        image: "images/bundle-1.webp", checkoutUrl: "https://example.com/checkout?pkg=1" },
-      { id: "3", title: "Compra 2 y lleva 1 GRATIS", sub: "3 bolsas", price: 138, compareAt: 297, badge: "MÁS POPULAR", selected: true,
+      { id: "1", title: "1 Pote", sub: "1 pote de Eremax", price: 39.90, compareAt: null, badge: "", selected: true,
+        image: "images/bundle-1.webp", checkoutUrl: "https://example.com/checkout?pkg=1", gift: null },
+      { id: "2", title: "2 Potes", sub: "2 potes de Eremax", price: 69.90, compareAt: null, badge: "MÁS POPULAR",
+        image: "images/bundle-2.webp", checkoutUrl: "https://example.com/checkout?pkg=2", gift: null },
+      { id: "3", title: "3 Potes", sub: "3 potes de Eremax + Envío gratis", price: 89.99, compareAt: null, badge: "MEJOR VALOR",
         image: "images/bundle-3.webp", checkoutUrl: "https://example.com/checkout?pkg=3",
-        // Franja que aparece dentro del paquete seleccionado (null = sin franja)
-        gift: { title: "GRATIS: [nombre del regalo] ([valor])", text: "[Explica en una frase qué aporta el regalo junto con las gomitas]" } },
-      { id: "5", title: "Compra 3 y lleva 2 GRATIS", sub: "5 bolsas", price: 207, compareAt: 495, badge: "MEJOR VALOR",
-        image: "images/bundle-5.webp", checkoutUrl: "https://example.com/checkout?pkg=5",
-        gift: { title: "GRATIS: 2 regalos ([valor])", text: "[Explica en una frase qué incluye este paquete]" } }
+        gift: { title: "ENVÍO GRATIS", text: "" } }
     ],
 
-    // Cuadro "REGALOS DESBLOQUEADOS". unlock = cantidad de bolsas que lo desbloquea.
+    // Cuadro "REGALOS DESBLOQUEADOS". unlock = cantidad de potes que lo desbloquea.
     // Déjalo vacío ([]) si no ofreces regalos.
     giftsTitle: "REGALOS DESBLOQUEADOS",
     gifts: [
-      { name: "[Regalo 1]", value: "$[XX]", unlock: "3", image: "images/gift-1.webp" },
-      { name: "[Regalo 2]", value: "$[XX]", unlock: "5", image: "images/gift-2.webp" }
+      { name: "[Regalo 1]", value: "$[XX]", unlock: "2", image: "images/gift-1.webp" },
+      { name: "[Regalo 2]", value: "$[XX]", unlock: "3", image: "images/gift-2.webp" }
     ],
     // Ventajas con check bajo el botón de compra ([] = no aparece).
     perks: ["Envío con seguimiento", "Garantía de 60 días"],
     currency: "$",
+    decimalSep: ",",     // separador decimal de los precios: "," → $39,90 · "." → $39.90
     deliveryDays: 4,     // "Llega entre el ... y el ..." (días a partir de hoy)
     deliveryDaysMax: 9,
 
@@ -91,17 +92,6 @@ window.EREMAX_CONFIG = {
 
     // Logos de prensa REALES (imágenes en images/press-*.png). Vacío = la franja "Visto en" no aparece.
     press: ["[Logo 1]", "[Logo 2]", "[Logo 3]", "[Logo 4]", "[Logo 5]"],
-
-    // Sección negra "Por qué funcionan mejor juntos" (solo si vendes un regalo/combo). null = no aparece.
-    together: {
-      title: "POR QUÉ FUNCIONAN MEJOR JUNTOS",
-      paragraphs: [
-        "Tu rendimiento depende de dos cosas: el flujo sanguíneo y la energía y la fuerza que lo acompañan.",
-        "Las gomitas Eremax trabajan el flujo sanguíneo y el deseo todos los días. [Nombre del regalo] trabaja [qué aporta el regalo: energía, fuerza, vitalidad…]."
-      ],
-      image: "images/together.webp",
-      closing: "Juntos cubren los dos lados, y cada uno potencia lo que el otro empieza. [Dosis diaria de cada producto]."
-    },
 
     // Párrafos antes de la línea de tiempo ([] = no aparece).
     timelineIntro: [

@@ -284,9 +284,11 @@
 
   /* ---------- pie ---------- */
   var co = O.company;
-  $("companyBox").innerHTML = "<h5>Contacto</h5><p><small>Razón social</small>" + co.legalName + "</p><p><small>Número de empresa</small>" + co.number +
-    "</p><p><small>Dirección</small>" + co.address + "</p><p><small>Teléfono</small>" + co.phone +
-    '</p><p><small>E-mail</small><a href="mailto:' + co.email + '">' + co.email + "</a></p>";
+  // Solo se muestran los campos que tengan valor en config.js (vacío "" = no aparece).
+  $("companyBox").innerHTML = "<h5>Contacto</h5>" +
+    [["Razón social", co.legalName], ["Número de empresa", co.number], ["Dirección", co.address], ["Teléfono", co.phone]]
+      .filter(function (f) { return f[1]; }).map(function (f) { return "<p><small>" + f[0] + "</small>" + f[1] + "</p>"; }).join("") +
+    (co.email ? '<p><small>E-mail</small><a href="mailto:' + co.email + '">' + co.email + "</a></p>" : "");
   $("mailLink").href = "mailto:" + co.email;
 
   /* ---------- barra fija ---------- */

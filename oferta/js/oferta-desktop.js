@@ -14,3 +14,24 @@
   if ($("spName")) $("spName").textContent = O.stickyName || (C.productName + " Performance Gummies").toUpperCase();
   document.querySelectorAll(".nav-mail").forEach(function (a) { a.href = "mailto:" + O.company.email; });
 })();
+
+/* Flechas de los especialistas pegadas debajo de la foto en escritorio (aunque la cita sea larga). */
+(function () {
+  "use strict";
+  var sec = document.getElementById("expertSection");
+  if (!sec) return;
+  var nav = sec.querySelector(".c-nav"), car = document.getElementById("exCarousel");
+  function place() {
+    if (!nav || !car) return;
+    nav.style.marginTop = ""; nav.style.marginBottom = "";
+    var photo = car.querySelector(".ex-photo");
+    if (!photo || window.innerWidth < 990) return;
+    var gap = photo.getBoundingClientRect().bottom - car.getBoundingClientRect().bottom + 20;
+    nav.style.marginTop = Math.round(gap) + "px";
+    var over = car.getBoundingClientRect().bottom - nav.getBoundingClientRect().bottom;
+    if (over > 0) nav.style.marginBottom = Math.round(over) + "px";
+  }
+  window.addEventListener("resize", place);
+  window.addEventListener("load", place);
+  setTimeout(place, 300);
+})();

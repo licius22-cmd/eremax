@@ -77,7 +77,7 @@
 
   /* ---------- valoración + sello ---------- */
   if (O.rating && O.rating.show) {
-    $("ratingLine").innerHTML = '<span class="stars-o">★★★★★</span> Calificación ' + O.rating.score + " • " + C.customersCount + "+ clientes";
+    $("ratingLine").innerHTML = '<span class="stars-o">★★★★★</span> Calificación 4.8/5 ' + " • " + "207.500 clientes";
   } else { $("ratingLine").remove(); }
   if (O.formulaBadge) {
     $("formulaPill").innerHTML = "<b>" + (O.formulaBadge.label || "") + "</b> " + GL.crown + " <span>" + O.formulaBadge.text + "</span>";

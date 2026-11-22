@@ -31,8 +31,8 @@ window.EREMAX_CONFIG = {
     formulaBadge: { label: "NUEVA FÓRMULA:", text: "una gomita al día, todos los días" },
 
     // Imágenes de la galería (la primera es la principal).
-    gallery: ["images/product-1.webp", "images/product-2.webp",
-              "images/product-3.webp", "images/product-4.webp"],
+    gallery: ["images/1..png", "images/2.jpg", "images/3..png", "images/4.png",
+              "images/5.png", "images/6.png", "images/7.png", "images/9.png"],
     supplementFacts: "images/supplement-facts.png",
 
     // icon: flame | drop | heart | bolt | up | clock | crown

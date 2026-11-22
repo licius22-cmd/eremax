@@ -8,3 +8,6 @@
   .b-img .smart-img { width: 82px; }
   .bundle[data-id="1"] .b-img .smart-img { width: 44px; }
 }
+
+/* Galería del topo: la foto entera, sin recortar (fondo oscuro si no es cuadrada) */
+.gallery-main .smart-img img { object-fit: contain; background: #111; }

@@ -26,6 +26,18 @@
   function smartImg(src, fallback, alt) {
     return '<span class="smart-img" data-src="' + (src || "") + '" data-alt="' + (alt || "") + '">' + fallback + "</span>";
   }
+  function retypeImage(src, done) {
+    if (!window.fetch || !window.Blob || !window.URL) return;
+    fetch(src).then(function (r) { return r.ok ? r.arrayBuffer() : null; }).then(function (buf) {
+      if (!buf) return;
+      var b = new Uint8Array(buf.slice(0, 12)), t = "";
+      if (b[0] === 0x52 && b[1] === 0x49 && b[8] === 0x57 && b[9] === 0x45) t = "image/webp";
+      else if (b[0] === 0x89 && b[1] === 0x50) t = "image/png";
+      else if (b[0] === 0xFF && b[1] === 0xD8) t = "image/jpeg";
+      else if (b[0] === 0x47 && b[1] === 0x49) t = "image/gif";
+      if (t) done(URL.createObjectURL(new Blob([buf], { type: t })));
+    }).catch(function () {});
+  }
   function hydrate(root) {
     (root || document).querySelectorAll(".smart-img[data-src]").forEach(function (box) {
       var src = box.getAttribute("data-src");
@@ -33,6 +45,9 @@
       box.dataset.done = 1;
       var img = new Image();
       img.onload = function () { box.innerHTML = ""; img.alt = box.getAttribute("data-alt"); box.appendChild(img); };
+      // Si el archivo tiene una extensión que no coincide con su formato real (ej. WebP guardado como .jpg),
+      // algunos navegadores (Safari) no lo muestran: se descarga y se vuelve a abrir con el tipo correcto.
+      img.onerror = function () { retypeImage(src, function (url) { img.onerror = null; img.src = url; }); };
       img.src = src;
     });
   }

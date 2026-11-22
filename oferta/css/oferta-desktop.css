@@ -3,6 +3,8 @@
 /* Flecha de las preguntas: ^ cerrada, v abierta (igual que la referencia) */
 .faq-list summary::after { transform: rotate(-135deg); margin-top: 6px; }
 .faq-list details[open] summary::after { transform: rotate(45deg); margin-top: -4px; }
+/* Botón de compra en una sola línea en el celular (precios con centavos) */
+.atc { white-space: nowrap; font-size: min(22px, 5.3vw); }
 
 @media (min-width: 990px) {
   body.pdp { font-size: 16px; }
@@ -66,7 +68,6 @@
   .guarantee-box p { font-size: 12px; line-height: 18px; }
   .tabs { margin-top: 24px; }
   .tab { font-size: 14px; height: 54px; padding: 0 6px; line-height: 1.2; }
-  .tab br { display: none; }
   .tab-panel { padding: 20px; }
   .ex-quote { font-size: 18px; line-height: 27px; }
 

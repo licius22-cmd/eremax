@@ -8,7 +8,7 @@
     img.innerHTML = A.pouch(C.brand, 0);
     var im = new Image();
     im.onload = function () { img.innerHTML = ""; img.appendChild(im); };
-    im.src = O.gallery[0];
+    im.src = O.stickyImage || O.gallery[0];
   }
   if ($("spRating")) $("spRating").innerHTML = O.rating && O.rating.show ? '<span class="stars-o">★★★★★</span> Calificación <b>' + O.rating.score + "/5</b> por <b>" + C.customersCount + "+</b> clientes felices" : "";
   if ($("spName")) $("spName").textContent = O.stickyName || (C.productName + " Performance Gummies").toUpperCase();

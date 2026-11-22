@@ -21,8 +21,9 @@ window.EREMAX_CONFIG = {
     logo: "",  // ej. "images/logo.png" — vacío = logo de texto
     showTimer: false, // true = muestra el contador en la barra negra superior
     profilePill: "",  // ej. "Perfil compatible: aquí está tu plan" (vacío = no aparece)
-    productTitle: "EREMAX PERFORMANCE GUMMIES",
-    productSubtitle: "Una fórmula natural y diaria para apoyar tu rendimiento, tu deseo y tu resistencia.",
+    // Título grande bajo la galería (titular, no solo el nombre del producto).
+    productTitle: "LA MEJORA QUE TU VIDA ÍNTIMA ESTABA ESPERANDO",
+    productSubtitle: "La fórmula natural más completa para un rendimiento más firme, un deseo que no se apaga y la resistencia para toda la noche.",
 
     // Valoración bajo el título. Pon show:false si aún no tienes reseñas reales.
     rating: { show: true, score: "[X.X]" },
@@ -36,10 +37,10 @@ window.EREMAX_CONFIG = {
 
     // icon: flame | drop | heart | bolt | up | clock | crown
     benefits: [
-      { icon: "drop", title: "Rendimiento más firme y pleno", text: "" },
+      { icon: "drop", title: "Un rendimiento más firme que ella nota", text: "" },
       { icon: "flame", title: "Un deseo que no se apaga", text: "" },
-      { icon: "heart", title: "Más energía y resistencia", text: "" },
-      { icon: "bolt", title: "Fácil de tomar", text: "Una gomita al día, sin agua y sin complicaciones." }
+      { icon: "heart", title: "Ella termina. Tú sigues.", text: "" },
+      { icon: "bolt", title: "Absorción rápida", text: "Se disuelve en la boca y empieza a actuar en minutos, en lugar de quedarse horas en el estómago." }
     ],
 
     // Paquetes. El que tiene selected:true aparece marcado al entrar.
@@ -71,9 +72,13 @@ window.EREMAX_CONFIG = {
     // Solo si vendes por suscripción. Déjalo vacío ("") si es compra única.
     subscriptionNote: "",
 
-    // Opinión de un experto REAL que aprobó tu producto (nombre, título y cita autorizada).
-    // Déjalo en null y la pestaña/sección no aparece.
-    expert: null, // { name: "Dr. ...", title: "...", quote: "...", photo: "images/expert.jpg" }
+    // Especialistas REALES que aprobaron tu producto (con autorización). El primero aparece también
+    // en la pestaña "Aprobado por especialista". Vacío ([]) = la sección y la pestaña no aparecen.
+    experts: [
+      { name: "[Nombre del especialista], M.D.", title: "[Especialidad]", quote: "[Cita autorizada del especialista sobre tu producto]", photo: "images/expert-1.jpg" },
+      { name: "[Nombre del especialista 2]", title: "[Especialidad]", quote: "[Cita autorizada del especialista sobre tu producto]", photo: "images/expert-2.jpg" },
+      { name: "[Nombre del especialista 3]", title: "[Especialidad]", quote: "[Cita autorizada del especialista sobre tu producto]", photo: "images/expert-3.jpg" }
+    ],
 
     // Pestaña "Detalles del producto" (un párrafo por elemento).
     details: [
@@ -85,10 +90,18 @@ window.EREMAX_CONFIG = {
     comparison: ["Funciona todos los días", "Sin receta médica", "Buen sabor"],
 
     // Logos de prensa REALES (imágenes en images/press-*.png). Vacío = la franja "Visto en" no aparece.
-    press: [],
+    press: ["[Logo 1]", "[Logo 2]", "[Logo 3]", "[Logo 4]", "[Logo 5]"],
 
     // Sección negra "Por qué funcionan mejor juntos" (solo si vendes un regalo/combo). null = no aparece.
-    together: null, // { title: "POR QUÉ FUNCIONAN MEJOR JUNTOS", paragraphs: ["...", "..."], image: "images/together.webp", closing: "..." }
+    together: {
+      title: "POR QUÉ FUNCIONAN MEJOR JUNTOS",
+      paragraphs: [
+        "Tu rendimiento depende de dos cosas: el flujo sanguíneo y la energía y la fuerza que lo acompañan.",
+        "Las gomitas Eremax trabajan el flujo sanguíneo y el deseo todos los días. [Nombre del regalo] trabaja [qué aporta el regalo: energía, fuerza, vitalidad…]."
+      ],
+      image: "images/together.webp",
+      closing: "Juntos cubren los dos lados, y cada uno potencia lo que el otro empieza. [Dosis diaria de cada producto]."
+    },
 
     // Párrafos antes de la línea de tiempo ([] = no aparece).
     timelineIntro: [
@@ -113,8 +126,18 @@ window.EREMAX_CONFIG = {
     ],
 
     // Sección "Lo que nos dijeron en nuestra encuesta". Solo con datos REALES de tu propia encuesta.
-    // Déjalo en null y la sección no aparece.
-    survey: null, // { note: "*Según respuestas de X clientes.", items: [{ pct: "XX%", text: "..." }, ...] }
+    // null = la sección no aparece.
+    survey: {
+      title: "LO QUE NOS DIJERON LOS HOMBRES EN NUESTRA ENCUESTA",
+      sub: "Combinamos ingredientes tradicionales con investigación moderna para ayudarte a rendir mejor y sentirte imparable.",
+      items: [
+        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" },
+        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" },
+        { pct: "[XX]%", text: "[Resultado real de tu encuesta]" }
+      ],
+      note: "*Según respuestas de [X] clientes.",
+      image: "images/survey-product.webp"
+    },
 
     // Imagen debajo de "Es para ti si…" (antes/después, ancho completo).
     rightForYouImage: "images/right-for-you.webp",
@@ -130,6 +153,26 @@ window.EREMAX_CONFIG = {
       { name: "Ashwagandha", dose: "[mg]", text: "Un adaptógeno que ayuda al cuerpo a manejar el estrés del día a día." },
       { name: "Shilajit", dose: "[mg]", text: "Una resina mineral rica en ácido fúlvico y minerales traza." }
     ],
+
+    // Pop-up "Toca para soltar" (juego de premio). code = cupón que ya existe en tu checkout;
+    // se añade a los links de compra como ?{couponParam}=CÓDIGO. enabled:false = desactivado.
+    popup: {
+      enabled: true,
+      showAfterScroll: 700,     // píxeles de scroll antes de aparecer
+      showAfterSeconds: 0,      // o segundos (0 = solo por scroll)
+      kicker: "OFERTA BLACK FRIDAY",
+      title: "TOCA PARA SOLTAR",
+      button: "PRUEBA TU SUERTE",
+      claim: "USAR MI PREMIO",
+      couponParam: "discount",
+      prizes: [
+        { label: "Regalo gratis", code: "[CODIGO1]", weight: 1 },
+        { label: "5% off", code: "[CODIGO2]", weight: 1 },
+        { label: "Envío gratis", code: "[CODIGO3]", weight: 1 },
+        { label: "$10 off", code: "[CODIGO4]", weight: 1 },
+        { label: "10% off", code: "[CODIGO5]", weight: 1 }
+      ]
+    },
 
     // Segundo carrusel de ingredientes (ej. del regalo). null = no aparece.
     giftIngredients: null, // { label: "EN TU REGALO", items: [{ name: "...", text: "...", image: "images/gift-ing-1.png" }] }

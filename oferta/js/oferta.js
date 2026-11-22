@@ -7,7 +7,14 @@
   function track(name, data) {
     try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, data || {})); } catch (e) {}
   }
+  function coupon() { try { return localStorage.getItem("eremax_coupon") || ""; } catch (e) { return ""; } }
+  function withCoupon(url) {
+    var c = coupon(), P = C.oferta.popup;
+    if (!c || !P || !P.couponParam) return url;
+    try { var u = new URL(url, location.href); u.searchParams.set(P.couponParam, c); return u.toString(); } catch (e) { return url; }
+  }
   function withParams(url) {
+    url = withCoupon(url);
     if (!C.passQueryParams || !location.search) return url;
     try {
       var u = new URL(url, location.href);
@@ -166,9 +173,10 @@
 
   /* ---------- pestañas ---------- */
   var tabs = [];
-  if (O.expert) tabs.push(["Opinión<br>experta", '<blockquote>"' + O.expert.quote + '"</blockquote><div class="ex-sign">' +
-    (O.expert.photo ? '<span class="ex-mini">' + smartImg(O.expert.photo, "", O.expert.name) + "</span>" : "") +
-    "<p><b>" + O.expert.name + "</b><br>" + O.expert.title + "</p></div>"]);
+  var ex0 = O.expertTab === false ? null : (O.experts && O.experts[0]);
+  if (ex0) tabs.push(["Aprobado por<br>especialista", '<div class="ex-quote">"' + ex0.quote + '"</div><div class="ex-sign">' +
+    '<span class="ex-mini">' + smartImg(ex0.photo || "", A.placeholder("oferta/expert-1.jpg", 0), ex0.name) + "</span>" +
+    "<p><b>" + ex0.name + "</b><br><small>" + ex0.title + "</small></p></div>"]);
   var det = O.details || [O.productSubtitle];
   tabs.push(["Detalles del<br>producto", det.map(function (t) { return "<p>" + t + "</p>"; }).join("")]);
   var cmpRows = O.comparison || ["Funciona todos los días", "Sin receta médica", "Buen sabor"];
@@ -178,7 +186,7 @@
   tabs.push(["Ingredientes", '<table class="ing-tbl"><tr><th>Ingrediente</th><th>Dosis</th><th>Beneficio</th></tr>' +
     O.ingredients.map(function (x) { return "<tr><td><b>" + x.name + "</b></td><td>" + (x.dose || "[mg]") + "</td><td>" + (x.short || x.text) + "</td></tr>"; }).join("") + "</table>"]);
   var faqSrc = document.querySelectorAll("#faq details");
-  tabs.push(["Preguntas", '<div class="tab-faq">' + Array.prototype.slice.call(faqSrc, 0, 6).map(function (d) {
+  tabs.push(["FAQ", '<div class="tab-faq">' + Array.prototype.slice.call(faqSrc, 0, 6).map(function (d) {
     return "<details><summary>" + d.querySelector("summary").textContent + "</summary><p>" + d.querySelector("p").textContent + "</p></details>"; }).join("") + "</div>"]);
   $("tabs").innerHTML = tabs.map(function (t, i) { return '<button class="tab' + (i ? "" : " on") + '" data-i="' + i + '">' + t[0] + "</button>"; }).join("");
   function showTab(i) {
@@ -191,7 +199,7 @@
   /* ---------- prensa (solo logos reales) ---------- */
   if (O.press && O.press.length) {
     $("pressSection").hidden = false;
-    var logos = O.press.map(function (src) { return '<img src="' + src + '" alt="">'; }).join("");
+    var logos = O.press.map(function (src) { return /\.(png|jpe?g|webp|svg)$/i.test(src) ? '<img src="' + src + '" alt="">' : '<span class="press-ph">' + src + "</span>"; }).join("");
     $("pressTrack").innerHTML = "<div>" + logos + logos + "</div>";
   }
 
@@ -208,13 +216,13 @@
   if (O.timelineIntro && O.timelineIntro.length) $("tlIntro").innerHTML = O.timelineIntro.map(function (t) { return "<p>" + t + "</p>"; }).join("");
   else $("tlIntro").remove();
 
-  /* ---------- experto ---------- */
-  if (O.expert) {
-    var es = $("expertSection"); es.hidden = false;
-    es.innerHTML = '<h2 class="sec-title">RECOMENDADO POR ESPECIALISTAS</h2><div class="expert-card">' +
-      (O.expert.photo ? '<span class="ex-photo">' + smartImg(O.expert.photo, "", O.expert.name) + "</span>" : "") +
-      "<div><b>" + O.expert.name + "</b><small>" + O.expert.title + '</small><p>"' + O.expert.quote + '"</p></div></div>';
-    hydrate(es);
+  /* ---------- especialistas ---------- */
+  if (O.experts && O.experts.length) {
+    $("expertSection").hidden = false;
+    $("exTrack").innerHTML = O.experts.map(function (x, i) {
+      return '<div class="ex-card slide"><span class="ex-photo">' + smartImg(x.photo || "", A.placeholder("oferta/expert-" + (i + 1) + ".jpg", i), x.name) + "</span>" +
+        '<b class="ex-name">' + x.name + '</b><span class="ex-role">' + x.title + '</span><p class="ex-text">"' + x.quote + '"</p></div>';
+    }).join("");
   }
 
   /* ---------- por qué ---------- */
@@ -225,7 +233,7 @@
   /* ---------- encuesta (opcional) ---------- */
   if (O.survey && O.survey.items && O.survey.items.length) {
     var sv = $("surveySection"); sv.hidden = false;
-    sv.innerHTML = '<h2 class="sec-title light">LO QUE NOS DIJERON LOS HOMBRES EN NUESTRA ENCUESTA</h2><div class="sv-list">' +
+    sv.innerHTML = '<h2 class="sec-title light">' + (O.survey.title || "") + "</h2>" + (O.survey.sub ? '<p class="sv-sub">' + O.survey.sub + "</p>" : "") + '<div class="sv-list">' +
       O.survey.items.map(function (x) { return '<div class="sv-item"><b>' + x.pct + "</b><span>" + x.text + "</span></div>"; }).join("") +
       '</div><p class="sv-note">' + (O.survey.note || "") + "</p>" +
       (O.survey.image !== null ? '<div class="sv-img">' + smartImg(O.survey.image || O.gallery[0], A.pouch(C.brand, 0), "") + "</div>" : "");
@@ -282,7 +290,6 @@
   var photos = (O.reviews || []).filter(function (r) { return r.photo; }).slice(0, 3);
   $("avatars").innerHTML = photos.map(function (r) { return '<img src="' + r.photo + '" alt="">'; }).join("");
   if (!photos.length) $("avatars").remove();
-  $("joinTitle").textContent = "ÚNETE A MÁS DE " + C.customersCount + " CLIENTES FELICES";
   $("joinText").textContent = "ÚNETE A MÁS DE " + C.customersCount + " CLIENTES FELICES";
   var sticky = $("stickyAtc");
   window.addEventListener("scroll", function () {
@@ -291,6 +298,68 @@
   }, { passive: true });
 
   hydrate();
+
+  /* ---------- pop-up "toca para soltar" ---------- */
+  (function () {
+    var P = O.popup;
+    if (!P || !P.enabled || !P.prizes || !P.prizes.length) return;
+    var KEY = "eremax_drop_seen";
+    try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+    var pop = $("dropPop"), board = $("dpBoard"), ball = $("dpBall"), rows = 6, n = P.prizes.length, shown = false;
+    $("dpKicker").textContent = P.kicker || "";
+    $("dpTitle").textContent = P.title || "TOCA PARA SOLTAR";
+    $("dpBtn").textContent = P.button || "PRUEBA TU SUERTE";
+    var html = "";
+    for (var r = 0; r < rows; r++) {
+      var cnt = r + 2;
+      html += '<div class="dp-row">' + new Array(cnt + 1).join('<i></i>') + "</div>";
+    }
+    board.insertAdjacentHTML("beforeend", html);
+    $("dpSlots").innerHTML = P.prizes.map(function (x) { return "<span>" + x.label + "</span>"; }).join("");
+    function open() {
+      if (shown) return; shown = true; pop.hidden = false; document.body.style.overflow = "hidden";
+      ball.style.transform = "translate(" + (board.clientWidth / 2 - 8) + "px,-16px)";
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      track("popup_view", {});
+    }
+    function close() { pop.hidden = true; document.body.style.overflow = ""; }
+    $("dpClose").onclick = close;
+    var onScroll = function () { if (window.scrollY > (P.showAfterScroll || 700)) { window.removeEventListener("scroll", onScroll); open(); } };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (P.showAfterSeconds) setTimeout(open, P.showAfterSeconds * 1000);
+    function pick() {
+      var tot = P.prizes.reduce(function (a, x) { return a + (x.weight || 1); }, 0), r = Math.random() * tot;
+      for (var i = 0; i < n; i++) { r -= (P.prizes[i].weight || 1); if (r <= 0) return i; }
+      return n - 1;
+    }
+    $("dpBtn").onclick = function () {
+      var btn = this; if (btn.disabled) return; btn.disabled = true;
+      var target = pick(), bw = board.clientWidth, bh = board.clientHeight;
+      var slotX = (target + 0.5) / n * bw, x = bw / 2, steps = [];
+      for (var r = 0; r < rows; r++) {
+        var left = rows - r, need = slotX - x, dir = Math.abs(need) < 4 ? (Math.random() < .5 ? -1 : 1) : (need > 0 ? 1 : -1);
+        x += dir * Math.min(Math.abs(need) / left + 8, bw / (rows + 2) / 1.2) * (Math.abs(need) < 4 ? .4 : 1);
+        steps.push([x, (r + 1) / (rows + 0.6) * bh]);
+      }
+      steps.push([slotX, bh + 6]);
+      var k = 0;
+      (function hop() {
+        if (k >= steps.length) return done();
+        ball.style.transform = "translate(" + (steps[k][0] - 8) + "px," + steps[k][1] + "px)";
+        k++; setTimeout(hop, 260);
+      })();
+      function done() {
+        var prize = P.prizes[target];
+        $("dpSlots").children[target].classList.add("won");
+        try { localStorage.setItem("eremax_coupon", prize.code || ""); } catch (e) {}
+        track("popup_prize", { prize: prize.label });
+        var res = $("dpResult"); res.hidden = false;
+        res.innerHTML = "<p>¡Ganaste <b>" + prize.label + "</b>!</p>" + (prize.code ? '<p class="dp-code">Código: <b>' + prize.code + "</b></p>" : "") +
+          '<button class="dp-btn" id="dpClaim">' + (P.claim || "USAR MI PREMIO") + "</button>";
+        $("dpClaim").onclick = function () { close(); paintBundles(); $("bundles").scrollIntoView({ behavior: "smooth" }); };
+      }
+    };
+  })();
 
   /* ---------- cuenta regresiva ---------- */
   (function () {

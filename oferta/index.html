@@ -17,7 +17,7 @@
   <!-- Barra Black Friday -->
   <div class="sale-banner">
     <div class="sale-banner__content">
-      <p class="sale-banner__heading">BLACK FRIDAY</p>
+      <p class="sale-banner__heading">OFERTA BLACK FRIDAY</p>
       <div class="sale-banner__gold">AHORRA 70% + REGALOS</div>
     </div>
     <div class="sale-banner__timer" aria-label="Cuenta regresiva">
@@ -49,9 +49,8 @@
   </nav>
 
   <main class="pdp-main">
-    <!-- Perfil + valoración -->
-    <div class="profile-pill"><span class="dot"></span>Perfil compatible: aquí está tu plan de rendimiento</div>
-    <div class="rating-pill" id="ratingPill"></div>
+    <!-- Aviso de perfil (opcional, config.oferta.profilePill) -->
+    <div class="profile-pill" id="profilePill"><span class="dot"></span><span id="profileText"></span></div>
 
     <!-- Galería -->
     <section class="gallery">
@@ -64,6 +63,8 @@
     <!-- Información del producto -->
     <section class="product-info">
       <h1 class="product-title" id="pTitle"></h1>
+      <div class="rating-line" id="ratingLine"></div>
+      <div class="formula-pill" id="formulaPill"></div>
       <p class="product-sub" id="pSub"></p>
       <ul class="benefits" id="benefits"></ul>
       <button class="facts-link" id="factsBtn">Información nutricional</button>
@@ -71,9 +72,12 @@
       <h3 class="choose" id="bundles">Elige tu paquete:</h3>
       <div class="bundles" id="bundleList"></div>
 
-      <p class="delivery"><span class="pulse-dot"></span>Pide hoy y recíbelo el <u id="deliveryDate"></u></p>
+      <fieldset class="gifts" id="gifts" hidden></fieldset>
 
-      <a class="atc btn-gold" id="atcBtn" href="#">Agregar al carrito <span class="atc-sep">|</span> <b id="atcPrice"></b> <s id="atcCompare"></s></a>
+      <p class="delivery"><span class="pulse-dot"></span>Llega entre el <span id="deliveryDate"></span></p>
+
+      <a class="atc btn-gold" id="atcBtn" href="#">AGREGAR AL CARRITO - <b id="atcPrice"></b></a>
+      <div class="perks" id="perks"></div>
       <p class="sub-note" id="subNote"></p>
 
       <div class="guarantee-box">
@@ -89,17 +93,24 @@
       <div class="tab-panel" id="tabPanel"></div>
     </section>
 
+    <!-- Logos de prensa (solo si config.oferta.press tiene logos reales) -->
+    <section class="press-section" id="pressSection" hidden><p>Visto en:</p><div class="press-track" id="pressTrack"></div></section>
+
+    <!-- Mejor juntos (solo si config.oferta.together) -->
+    <section class="together-section" id="togetherSection" hidden></section>
+
     <!-- Línea de tiempo -->
     <section class="timeline-section">
       <h2 class="sec-title">QUÉ ESPERAR: TU LÍNEA DE TIEMPO</h2>
+      <div class="tl-intro" id="tlIntro"></div>
       <div class="gold-rule"><span></span></div>
       <div class="tl">
         <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="bolt"></div><div><span class="tl-day">DÍA 7</span><h4>Arranque</h4></div></div>
-          <ul><li>Creas el hábito de una gomita al día</li><li>Muchos hombres notan primero más energía</li><li>Empiezas a prestar atención a tu deseo</li></ul></div>
+          <ul><li>Creas el hábito de una gomita al día</li><li>Muchos hombres notan primero más energía</li><li>Empiezas a prestar atención a tu deseo</li><li>Te despiertas con más ganas de empezar el día</li></ul></div>
         <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="flame"></div><div><span class="tl-day">DÍA 30</span><h4>Ella lo nota</h4></div></div>
-          <ul><li>Tu rutina ya es constante</li><li>Te sientes con más confianza en la cama</li><li>Más ganas de buscarla</li></ul></div>
+          <ul><li>Tu rutina ya es constante</li><li>Te sientes con más confianza en la cama</li><li>Más ganas de buscarla</li><li>Ella empieza a notar el cambio</li></ul></div>
         <div class="tl-item"><div class="tl-head"><div class="g-circle lg" data-glyph="crown"></div><div><span class="tl-day">DÍA 90</span><h4>Tu nueva normalidad</h4></div></div>
-          <ul><li>Completaste el plan de 12 semanas</li><li>Compara cómo te sientes frente al día 1</li><li>Mantén la rutina para seguir en tu mejor nivel</li></ul></div>
+          <ul><li>Completaste el plan de 12 semanas</li><li>Compara cómo te sientes frente al día 1</li><li>La confianza ya es parte de ti</li><li>Mantén la rutina para seguir en tu mejor nivel</li></ul></div>
       </div>
       <p class="tl-note">Los resultados varían de persona a persona.</p>
     </section>
@@ -134,8 +145,14 @@
     <!-- Ingredientes -->
     <section class="ingredients-section" id="ingredientes">
       <h2 class="sec-title">INGREDIENTES PODEROSOS PARA TU MEJOR RENDIMIENTO</h2>
+      <p class="ing-label" id="ingLabel">EN TUS GOMITAS</p>
       <div class="carousel" id="ingCarousel"><div class="track" id="ingGrid"></div></div>
       <div class="c-nav" data-for="ingCarousel"><button class="c-btn prev">‹</button><button class="c-btn next">›</button></div>
+      <div id="giftIngWrap" hidden>
+        <p class="ing-label" id="giftIngLabel"></p>
+        <div class="carousel" id="giftIngCarousel"><div class="track" id="giftIngGrid"></div></div>
+        <div class="c-nav" data-for="giftIngCarousel"><button class="c-btn prev">‹</button><button class="c-btn next">›</button></div>
+      </div>
       <a class="btn-gold shop-now" href="#bundles">COMPRAR AHORA</a>
       <div class="trust-badges" id="trustBadges"></div>
     </section>
@@ -164,13 +181,22 @@
     </section>
   </main>
 
+  <!-- Banner de suscripción -->
+  <section class="join-banner">
+    <h2 id="joinTitle"></h2>
+    <p>Suscríbete y recibe primero nuestras ofertas, novedades y consejos para sacar el máximo provecho de tu rutina.</p>
+    <form class="subscribe" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Listo!';">
+      <input type="email" placeholder="E-mail" required><button>Suscribirme</button>
+    </form>
+  </section>
+
   <!-- Pie de página -->
   <footer class="pdp-footer">
-    <div class="f-col">
+    <div class="f-col f-brand">
       <div class="f-logo" id="footLogo"></div>
       <p>En <span class="brand"></span> la calidad y la confianza son nuestra prioridad. ¿Tienes preguntas? Estamos aquí para ayudarte.</p>
-      <form class="subscribe" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Listo!';">
-        <input type="email" placeholder="E-mail" required><button>Suscribirme</button>
+      <form class="subscribe round" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓';">
+        <input type="email" placeholder="E-mail" required><button aria-label="Suscribirme">›</button>
       </form>
     </div>
     <div class="f-col">
@@ -182,9 +208,9 @@
     </div>
     <div class="f-col">
       <h5>Enlaces útiles</h5>
-      <a href="#faq">Preguntas frecuentes</a>
       <a href="#bundles">Comprar ahora</a>
-      <a id="mailLink" href="#">Contacto</a>
+      <a id="mailLink" href="#">Contáctanos</a>
+      <a href="#faq">Preguntas frecuentes</a>
     </div>
     <div class="f-col" id="companyBox"></div>
     <p class="f-copy">© <span id="year"></span>, <span class="brand"></span>.</p>
@@ -193,7 +219,7 @@
 
   <!-- Barra fija de compra (móvil) -->
   <div class="sticky-atc" id="stickyAtc">
-    <a class="btn-gold" id="stickyBtn" href="#">AGREGAR AL CARRITO</a>
+    <a class="btn-gold" id="stickyBtn" href="#">AGREGAR AL CARRITO - <span id="stickyPrice"></span></a>
     <div class="sticky-join"><span class="avatars" id="avatars"></span><span id="joinText"></span></div>
   </div>
 

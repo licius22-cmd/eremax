@@ -50,10 +50,19 @@
   $("sideMenu").querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { $("sideMenu").classList.remove("open"); }); });
   $("cartBtn").onclick = function () { $("bundles").scrollIntoView({ behavior: "smooth" }); };
 
-  /* ---------- valoración ---------- */
+  /* ---------- barra superior ---------- */
+  if (O.showTimer === false) { var tm = document.querySelector(".sale-banner__timer"); if (tm) tm.remove(); }
+
+  /* ---------- aviso de perfil (opcional) ---------- */
+  if (O.profilePill) $("profileText").textContent = O.profilePill; else $("profilePill").remove();
+
+  /* ---------- valoración + sello ---------- */
   if (O.rating && O.rating.show) {
-    $("ratingPill").innerHTML = '<span class="stars">★★★★★</span> Calificación ' + O.rating.score + "/5 por " + C.customersCount + "+";
-  } else { $("ratingPill").remove(); }
+    $("ratingLine").innerHTML = '<span class="stars-o">★★★★★</span> Calificación ' + O.rating.score + " • " + C.customersCount + "+ clientes";
+  } else { $("ratingLine").remove(); }
+  if (O.formulaBadge) {
+    $("formulaPill").innerHTML = "<b>" + (O.formulaBadge.label || "") + "</b> " + GL.crown + " <span>" + O.formulaBadge.text + "</span>";
+  } else { $("formulaPill").remove(); }
 
   /* ---------- galería ---------- */
   var gi = 0;
@@ -96,16 +105,37 @@
 
   /* ---------- paquetes ---------- */
   var current = O.bundles.find(function (b) { return b.selected; }) || O.bundles[0];
+  var CHECK = '<i class="ck">✓</i>';
+  function paintGifts() {
+    var g = O.gifts || [];
+    if (!g.length) return;
+    var box = $("gifts"); box.hidden = false;
+    var qty = parseInt(current.id, 10) || 1;
+    box.innerHTML = '<legend>' + (O.giftsTitle || "REGALOS DESBLOQUEADOS") + "</legend><div class=\"g-row\">" +
+      g.map(function (x, i) {
+        var open = qty >= (parseInt(x.unlock, 10) || 1);
+        return (i ? '<span class="g-plus">+</span>' : "") +
+          '<div class="g-item' + (open ? "" : " locked") + '"><span class="g-img">' +
+          smartImg(x.image || "", A.pouch(x.name, i + 1), x.name) +
+          (open ? "" : '<span class="g-lock"><svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>') +
+          '</span><s>' + x.value + "</s>" +
+          (open ? '<b class="g-free">GRATIS: ' + x.name + "</b>" : "<small>Se desbloquea con " + x.unlock + "</small>") + "</div>";
+      }).join("") + "</div>";
+    hydrate(box);
+  }
   function paintBundles() {
     $("bundleList").innerHTML = O.bundles.map(function (b) {
       var on = b === current;
-      return '<label class="bundle' + (on ? " on" : "") + '" data-id="' + b.id + '">' +
-        (b.badge ? '<span class="b-badge">' + b.badge + "</span>" : "") +
-        '<span class="radio"></span>' +
+      return '<div class="b-wrap' + (b.badge ? " has-badge" : "") + '">' + (b.badge ? '<span class="b-badge">' + b.badge + "</span>" : "") +
+        '<label class="bundle' + (on ? " on" : "") + '" data-id="' + b.id + '">' +
+        '<span class="b-main"><span class="radio"></span>' +
         '<span class="b-img">' + smartImg(b.image, A.pouch(C.brand, 0), "") + "</span>" +
         '<span class="b-txt"><b>' + b.title + "</b><small>" + b.sub + "</small></span>" +
-        '<span class="b-price"><b>' + money(b.price) + "</b><s>" + money(b.compareAt) + "</s></span></label>";
+        '<span class="b-price"><b>' + money(b.price) + "</b><s>" + money(b.compareAt) + "</s></span></span>" +
+        (on && b.gift ? '<span class="b-gift"><span class="b-gift-h">' + CHECK + b.gift.title + "</span>" + (b.gift.text ? "<small>" + b.gift.text + "</small>" : "") + "</span>" : "") +
+        "</label></div>";
     }).join("");
+    paintGifts();
     $("bundleList").querySelectorAll(".bundle").forEach(function (el) {
       el.onclick = function () {
         current = O.bundles.find(function (b) { return b.id === el.dataset.id; });
@@ -116,7 +146,7 @@
     var url = withParams(current.checkoutUrl);
     $("atcBtn").href = url; $("stickyBtn").href = url;
     $("atcPrice").textContent = money(current.price);
-    $("atcCompare").textContent = money(current.compareAt);
+    $("stickyPrice").textContent = money(current.price);
 
   }
   paintBundles();
@@ -127,32 +157,56 @@
     });
   });
 
-  var d = new Date(); d.setDate(d.getDate() + (O.deliveryDays || 4));
-  var dStr = d.toLocaleDateString("es", { day: "numeric", month: "long" });
-  $("deliveryDate").textContent = dStr;
+  function dt(n) { var d = new Date(); d.setDate(d.getDate() + n); return d.toLocaleDateString("es", { day: "numeric", month: "short" }).replace(".", ""); }
+  var d1 = O.deliveryDays || 4, d2 = O.deliveryDaysMax || d1 + 5;
+  $("deliveryDate").textContent = dt(d1) + " y el " + dt(d2);
+  if (O.perks && O.perks.length) $("perks").innerHTML = O.perks.map(function (t) { return "<span>" + CHECK + t + "</span>"; }).join("");
+  else $("perks").remove();
   if (O.subscriptionNote) $("subNote").textContent = O.subscriptionNote; else $("subNote").remove();
 
   /* ---------- pestañas ---------- */
   var tabs = [];
-  if (O.expert) tabs.push(["Opinión experta", '<blockquote>"' + O.expert.quote + '"</blockquote><p class="ex-name"><b>' + O.expert.name + "</b><br>" + O.expert.title + "</p>"]);
-  tabs.push(["Detalles del producto", "<p>" + O.productSubtitle + "</p><ul><li>Una gomita al día</li><li>" + C.guaranteeDays + " días de garantía de devolución</li><li>Sin receta médica</li></ul>"]);
-  tabs.push(["Tabla comparativa",
-    '<table class="cmp"><tr><th></th><th>' + C.brand + "</th><th>Pastillas con receta</th><th>Otros</th></tr>" +
-    [["Ingredientes naturales", 1, 0, "?"], ["Sin receta médica", 1, 0, 1], ["Rutina diaria, sin calcular la hora", 1, 0, "?"],
-     ["Varios ingredientes en una sola gomita", 1, 0, 0], ["Garantía de devolución de " + C.guaranteeDays + " días", 1, 0, 0]]
-      .map(function (r) {
-        var c = function (v) { return v === 1 ? '<td class="y">✓</td>' : v === 0 ? '<td class="n">✕</td>' : '<td class="m">–</td>'; };
-        return "<tr><td>" + r[0] + "</td>" + c(r[1]) + c(r[2]) + c(r[3]) + "</tr>";
-      }).join("") + "</table>"]);
-  tabs.push(["Ingredientes", "<ul>" + O.ingredients.map(function (x) { return "<li><b>" + x.name + "</b></li>"; }).join("") + "</ul>"]);
-  tabs.push(["Preguntas", '<p>Encuentra las respuestas más comunes en <a href="#faq">Preguntas frecuentes</a>.</p>']);
+  if (O.expert) tabs.push(["Opinión<br>experta", '<blockquote>"' + O.expert.quote + '"</blockquote><div class="ex-sign">' +
+    (O.expert.photo ? '<span class="ex-mini">' + smartImg(O.expert.photo, "", O.expert.name) + "</span>" : "") +
+    "<p><b>" + O.expert.name + "</b><br>" + O.expert.title + "</p></div>"]);
+  var det = O.details || [O.productSubtitle];
+  tabs.push(["Detalles del<br>producto", det.map(function (t) { return "<p>" + t + "</p>"; }).join("")]);
+  var cmpRows = O.comparison || ["Funciona todos los días", "Sin receta médica", "Buen sabor"];
+  tabs.push(["Tabla<br>comparativa",
+    '<div class="cmp2"><div class="cmp2-h"><span></span><span>Otros</span><span class="me">' + C.brand + "</span></div>" +
+    cmpRows.map(function (r) { return '<div class="cmp2-r"><span>' + r + '</span><span class="n">✕</span><span class="me y">✓</span></div>'; }).join("") + "</div>"]);
+  tabs.push(["Ingredientes", '<table class="ing-tbl"><tr><th>Ingrediente</th><th>Dosis</th><th>Beneficio</th></tr>' +
+    O.ingredients.map(function (x) { return "<tr><td><b>" + x.name + "</b></td><td>" + (x.dose || "[mg]") + "</td><td>" + (x.short || x.text) + "</td></tr>"; }).join("") + "</table>"]);
+  var faqSrc = document.querySelectorAll("#faq details");
+  tabs.push(["Preguntas", '<div class="tab-faq">' + Array.prototype.slice.call(faqSrc, 0, 6).map(function (d) {
+    return "<details><summary>" + d.querySelector("summary").textContent + "</summary><p>" + d.querySelector("p").textContent + "</p></details>"; }).join("") + "</div>"]);
   $("tabs").innerHTML = tabs.map(function (t, i) { return '<button class="tab' + (i ? "" : " on") + '" data-i="' + i + '">' + t[0] + "</button>"; }).join("");
   function showTab(i) {
     $("tabs").querySelectorAll(".tab").forEach(function (t, k) { t.classList.toggle("on", k === i); });
-    $("tabPanel").innerHTML = tabs[i][1];
+    $("tabPanel").innerHTML = tabs[i][1]; hydrate($("tabPanel"));
   }
   $("tabs").querySelectorAll(".tab").forEach(function (t) { t.onclick = function () { showTab(+t.dataset.i); }; });
   showTab(0);
+
+  /* ---------- prensa (solo logos reales) ---------- */
+  if (O.press && O.press.length) {
+    $("pressSection").hidden = false;
+    var logos = O.press.map(function (src) { return '<img src="' + src + '" alt="">'; }).join("");
+    $("pressTrack").innerHTML = "<div>" + logos + logos + "</div>";
+  }
+
+  /* ---------- mejor juntos (opcional) ---------- */
+  if (O.together) {
+    var tg = $("togetherSection"); tg.hidden = false;
+    tg.innerHTML = '<h2 class="sec-title light">' + O.together.title + "</h2>" +
+      (O.together.paragraphs || []).map(function (t) { return "<p>" + t + "</p>"; }).join("") +
+      '<div class="tg-img">' + smartImg(O.together.image || "", A.placeholder("oferta/images/together.webp", 2), "") + "</div>" +
+      (O.together.closing ? "<p>" + O.together.closing + "</p>" : "");
+  }
+
+  /* ---------- intro de la línea de tiempo ---------- */
+  if (O.timelineIntro && O.timelineIntro.length) $("tlIntro").innerHTML = O.timelineIntro.map(function (t) { return "<p>" + t + "</p>"; }).join("");
+  else $("tlIntro").remove();
 
   /* ---------- experto ---------- */
   if (O.expert) {
@@ -173,7 +227,8 @@
     var sv = $("surveySection"); sv.hidden = false;
     sv.innerHTML = '<h2 class="sec-title light">LO QUE NOS DIJERON LOS HOMBRES EN NUESTRA ENCUESTA</h2><div class="sv-list">' +
       O.survey.items.map(function (x) { return '<div class="sv-item"><b>' + x.pct + "</b><span>" + x.text + "</span></div>"; }).join("") +
-      '</div><p class="sv-note">' + (O.survey.note || "") + "</p>";
+      '</div><p class="sv-note">' + (O.survey.note || "") + "</p>" +
+      (O.survey.image !== null ? '<div class="sv-img">' + smartImg(O.survey.image || O.gallery[0], A.pouch(C.brand, 0), "") + "</div>" : "");
   }
 
   /* ---------- para ti si ---------- */
@@ -187,6 +242,13 @@
     return '<div class="ing slide"><span class="ing-img">' + smartImg((x.image || "images/ingredient-" + (i + 1) + ".png"), A.ingredient(x.name, i), x.name) +
       "</span><h4>" + x.name + "</h4><p>" + x.text + "</p></div>";
   }).join("");
+  if (O.ingredientsLabel !== undefined) { if (O.ingredientsLabel) $("ingLabel").textContent = O.ingredientsLabel; else $("ingLabel").remove(); }
+  if (O.giftIngredients && O.giftIngredients.items && O.giftIngredients.items.length) {
+    $("giftIngWrap").hidden = false; $("giftIngLabel").textContent = O.giftIngredients.label || "";
+    $("giftIngGrid").innerHTML = O.giftIngredients.items.map(function (x, i) {
+      return '<div class="ing slide"><span class="ing-img">' + smartImg(x.image || "", A.ingredient(x.name, i + 2), x.name) + "</span><h4>" + x.name + "</h4><p>" + x.text + "</p></div>";
+    }).join("");
+  }
   $("trustBadges").innerHTML = O.badges.map(function (b) { return '<span class="tb"><i>✓</i> ' + b + "</span>"; }).join("");
 
   /* ---------- reseñas ---------- */
@@ -220,6 +282,7 @@
   var photos = (O.reviews || []).filter(function (r) { return r.photo; }).slice(0, 3);
   $("avatars").innerHTML = photos.map(function (r) { return '<img src="' + r.photo + '" alt="">'; }).join("");
   if (!photos.length) $("avatars").remove();
+  $("joinTitle").textContent = "ÚNETE A MÁS DE " + C.customersCount + " CLIENTES FELICES";
   $("joinText").textContent = "ÚNETE A MÁS DE " + C.customersCount + " CLIENTES FELICES";
   var sticky = $("stickyAtc");
   window.addEventListener("scroll", function () {
@@ -231,6 +294,7 @@
 
   /* ---------- cuenta regresiva ---------- */
   (function () {
+    if (!$("cd-h")) return;
     var key = "eremax_cd_end", end;
     try { end = +localStorage.getItem(key); } catch (e) {}
     if (!end || end < Date.now()) { end = Date.now() + C.countdownSeconds * 1000; try { localStorage.setItem(key, end); } catch (e) {} }

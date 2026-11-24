@@ -168,7 +168,7 @@ window.EREMAX_CONFIG = {
       number: "",
       address: "",
       phone: "",
-      email: "support@eremax.com"
+      email: "support@cartpanda.com"
     }
   }
 };

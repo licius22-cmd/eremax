@@ -6,7 +6,7 @@
 window.EREMAX_CONFIG = {
   brand: "Eremax",
   productName: "Eremax",
-  guaranteeDays: 60,
+  guaranteeDays: 30,
 
   // Número de prueba social (pasos 3 y 7). Usa solo un número comprobable.
   customersCount: "207,500",

@@ -6,7 +6,7 @@
 window.EREMAX_CONFIG = {
   brand: "Eremax",
   productName: "Eremax",
-  guaranteeDays: 60,
+  guaranteeDays: 30,
 
   // Número de prueba social (valoración, reseñas y barra fija). Usa solo un número comprobable.
   customersCount: "207,500",
@@ -63,7 +63,7 @@ window.EREMAX_CONFIG = {
     giftsTitle: "REGALOS DESBLOQUEADOS",
     gifts: [],
     // Ventajas con check bajo el botón de compra ([] = no aparece).
-    perks: ["Envío con seguimiento", "Garantía de 60 días"],
+    perks: ["Envío con seguimiento", "Garantía de 30 días"],
     currency: "$",
     decimalSep: ",",     // separador decimal de los precios: "," → $39,90 · "." → $39.90
     deliveryDays: 4,     // "Llega entre el ... y el ..." (días a partir de hoy)

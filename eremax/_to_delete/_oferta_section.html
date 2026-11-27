@@ -1,0 +1,135 @@
+
+<!-- ===================== OFERTA EREMAX (3 potes) ===================== -->
+<!-- Trocar os href="#LINK_..." pelos links de checkout de cada kit -->
+<section class="ofertas esconder" id="ofertas">
+  <div class="ofertas-grid">
+
+    <!-- 1 POTE -->
+    <div class="oferta-card card-lado card-1">
+      <div class="card-top">Básico</div>
+      <div class="card-body">
+        <h3 class="card-qtd">1 POTE</h3>
+        <p class="card-sub">Tratamiento de 1 mes</p>
+        <img class="card-img" src="images/eremax-1.png" alt="Eremax 1 pote">
+        <div class="card-preco"><span class="moeda">$</span><span class="valor">45</span><span class="cent">,99</span></div>
+        <div class="card-linhas">
+          <div class="linha"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        </div>
+        <a href="#LINK_1_POTE" class="btn-comprar btn-cinza"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><span>VISA</span><span>MC</span><span>AMEX</span><span>DISC</span></div>
+        <div class="card-total">total: <b>$45,99</b></div>
+      </div>
+    </div>
+
+    <!-- 3 POTES (destaque) -->
+    <div class="oferta-card card-destaque card-3">
+      <div class="card-top-destaque">✦ BLACK <span>FRIDAY</span> ✦</div>
+      <div class="card-body">
+        <h3 class="card-qtd card-qtd-lg">3 POTES</h3>
+        <p class="card-sub">Tratamiento de 3 meses</p>
+        <div class="img-wrap">
+          <img class="card-img card-img-lg" src="images/eremax-3.png" alt="Eremax 3 potes">
+          <div class="selo"><small>BLACK FRIDAY</small><strong>28%</strong><small>OFF</small></div>
+        </div>
+        <div class="card-preco card-preco-lg"><span class="moeda">$</span><span class="valor">32</span><span class="cent">,99<small>POR<br>POTE</small></span></div>
+        <div class="box-economia"><span class="ok">✓</span> AHORRAS <b>$38,98</b></div>
+        <div class="box-bf"><span class="ok-gold">✓</span> OFERTA BLACK FRIDAY</div>
+        <div class="box-garantia"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        <a href="#LINK_3_POTES" class="btn-comprar btn-verde"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><span>VISA</span><span>MC</span><span>AMEX</span><span>DISC</span></div>
+        <div class="card-total">total: <s>$137,97</s> <b>$98,99</b></div>
+      </div>
+    </div>
+
+    <!-- 2 POTES -->
+    <div class="oferta-card card-lado card-2">
+      <div class="card-top">Buen Valor</div>
+      <div class="card-body">
+        <div class="tag-bf">BLACK FRIDAY <span>-13%</span></div>
+        <h3 class="card-qtd">2 POTES</h3>
+        <p class="card-sub">Tratamiento de 2 meses</p>
+        <img class="card-img" src="images/eremax-2.png" alt="Eremax 2 potes">
+        <div class="card-preco"><span class="moeda">$</span><span class="valor">39</span><span class="cent">,99<small>POR<br>POTE</small></span></div>
+        <div class="card-linhas">
+          <div class="linha linha-azul"><span class="ok">✓</span> AHORRAS $11,99</div>
+          <div class="linha"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        </div>
+        <a href="#LINK_2_POTES" class="btn-comprar btn-cinza"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><span>VISA</span><span>MC</span><span>AMEX</span><span>DISC</span></div>
+        <div class="card-total">total: <s>$91,98</s> <b>$79,99</b></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ofertas { max-width: 1060px; margin: 0 auto 50px; padding: 0 10px; font-family: 'Roboto Condensed', 'Segoe UI', Arial, sans-serif; color: #15202b; }
+  .ofertas-grid { display: grid; grid-template-columns: 1fr 1.08fr 1fr; gap: 22px; align-items: start; }
+  .oferta-card { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #dbe3ec; text-align: center; }
+  .card-lado { margin-top: 20px; }
+  .card-top { background: #edf2f7; font-weight: 700; font-size: 20px; padding: 14px; color: #15202b; }
+  .card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; align-items: center; }
+  .card-qtd { font-size: 32px; font-weight: 800; margin: 4px 0 0; letter-spacing: .5px; color: #15202b; }
+  .card-qtd-lg { font-size: 38px; }
+  .card-sub { margin: 4px 0 8px; color: #5b6b7b; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .tag-bf { background: #111; color: #fff; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+  .tag-bf span { color: #f5c542; }
+  .card-img { width: 100%; height: 190px; object-fit: contain; }
+  .card-img-lg { height: 230px; }
+  .card-2 .card-img, .card-1 .card-img { transform: scale(1.15); }
+  .card-img-lg { transform: scale(1.1); }
+  .img-wrap { position: relative; width: 100%; }
+  .selo { position: absolute; top: 0; right: -4px; width: 86px; height: 86px; border-radius: 50%;
+          background: #111; border: 4px solid #d4a52c; box-shadow: 0 0 0 3px #f5d36b;
+          display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; transform: rotate(10deg); }
+  .selo small { font-size: 9px; font-weight: 800; color: #f5d36b; }
+  .selo strong { font-size: 26px; line-height: 1; }
+  .card-preco { display: flex; align-items: flex-start; justify-content: center; margin: 10px 0 12px; color: #15202b; }
+  .card-preco .moeda { font-size: 24px; font-weight: 800; margin-top: 8px; }
+  .card-preco .valor { font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -2px; }
+  .card-preco .cent { font-size: 22px; font-weight: 800; margin-top: 6px; display: flex; flex-direction: column; align-items: flex-start; }
+  .card-preco .cent small { font-size: 10px; line-height: 1.1; margin-top: 4px; color: #333; }
+  .card-preco-lg .valor { font-size: 76px; }
+  .card-linhas { width: 100%; border-top: 1px solid #dbe3ec; margin-bottom: 18px; }
+  .linha { font-size: 12px; font-weight: 700; padding: 8px 0; border-bottom: 1px solid #dbe3ec; color: #15202b; font-family: 'Segoe UI', Arial, sans-serif; }
+  .linha-azul { color: #0d3b78; }
+  .ok { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; background: #1aa34a; color: #fff; font-size: 10px; align-items: center; justify-content: center; margin-right: 4px; }
+  .ok-gold { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; background: #f5c542; color: #111; font-size: 11px; align-items: center; justify-content: center; margin-right: 6px; }
+  .box-economia, .box-bf, .box-garantia { width: 100%; box-sizing: border-box; border-radius: 8px; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+  .box-economia { background: #fff6d6; border: 1px solid #f0d27a; padding: 11px; font-size: 12px; }
+  .box-economia b { font-size: 22px; vertical-align: middle; margin-left: 4px; }
+  .box-bf { background: #111; color: #f5c542; border: 2px solid #d4a52c; padding: 12px; font-size: 14px; letter-spacing: .5px; }
+  .box-garantia { background: #fff; border: 1px solid #dbe3ec; padding: 9px; font-size: 11px; }
+  .btn-comprar { display: block; width: 100%; box-sizing: border-box; text-decoration: none; color: #fff; font-weight: 800; font-size: 22px; padding: 15px 10px; border-radius: 10px; letter-spacing: .5px; transition: transform .15s; }
+  .btn-comprar:hover { transform: scale(1.03); }
+  .btn-cinza { background: linear-gradient(90deg, #6b7580, #9aa3ab 50%, #6b7580); box-shadow: 0 4px 0 #444c54; }
+  .btn-verde { background: linear-gradient(180deg, #22d17a, #0fa957); box-shadow: 0 4px 0 #0a7a3e; font-size: 24px; animation: pulso 1.6s infinite; }
+  @keyframes pulso { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  .cart { font-size: 18px; }
+  .cartoes { display: flex; gap: 6px; justify-content: center; margin: 14px 0 10px; }
+  .cartoes span { border: 1px solid #ccd5df; border-radius: 4px; font-size: 10px; font-weight: 800; padding: 6px 8px; color: #1a3a8a; background: #f7f9fb; }
+  .card-total { font-size: 21px; color: #15202b; }
+  .card-total s { color: #8a96a3; margin-right: 4px; }
+  .card-total b { font-weight: 800; }
+  .card-destaque { border: 2px solid #15202b; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .card-destaque .card-body { background: #fffaf0; }
+  .card-top-destaque { background: #15202b; color: #fff; font-size: 30px; font-weight: 800; padding: 14px; border-bottom: 3px solid #d4a52c; letter-spacing: 1px; }
+  .card-top-destaque span { color: #f5c542; }
+
+  /* ---- Celular: destaque primeiro, botão depois do total (igual print) ---- */
+  @media (max-width: 768px) {
+    .ofertas-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 18px; }
+    .card-3 { order: 1; } .card-2 { order: 2; } .card-1 { order: 3; }
+    .card-lado { margin-top: 0; }
+    .card-top-destaque { font-size: 26px; }
+    .card-destaque .cartoes { display: none; }
+    .card-destaque .card-total { order: 1; margin: 6px 0 14px; }
+    .card-destaque .btn-comprar { order: 2; }
+    .card-destaque .card-body > * { order: 0; }
+    .card-destaque .card-total { order: 1; }
+    .card-destaque .btn-comprar { order: 2; }
+  }
+</style>
+<!-- =================== FIM OFERTA EREMAX =================== -->
+

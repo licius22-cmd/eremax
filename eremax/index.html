@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Diagnóstico</title>
+    
+<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/players/6b03a26d018899e2eebb25f9/v4/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+<link rel="preload" href="https://cdn.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/68acd108def35b4ab941b94e/main.m3u8" as="fetch">
+<link rel="dns-prefetch" href="https://cdn.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://images.converteai.net">
+<link rel="dns-prefetch" href="https://license.vturb.com">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1369039562968598');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1369039562968598&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Topo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #2a2a2a;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .doctor-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doctor-thumb {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .doctor-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diag-label {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 0;
+            color: #ccc;
+        }
+
+        .doctor-name-top {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .status-badge {
+            background-color: #0a2a1a;
+            color: #4ade80;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .headline {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .headline span {
+            color: #c71423;
+        }
+
+        /* VSL - Formato Vertical */
+        .vsl-box {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            background: #000;
+        }
+
+        .vsl-box img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Comentários */
+        .comments-container {
+            text-align: left;
+            max-width: 750px;
+            margin: 0 auto;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 20px;
+        }
+
+        .comments-header {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            font-size: 13px;
+        }
+
+        .user-name {
+            color: #5b9bd5;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .comment-text {
+            line-height: 1.35;
+            margin-bottom: 6px;
+            color: #e0e0e0;
+        }
+
+        .comment-meta {
+            color: #666;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-link {
+            color: #5b9bd5;
+            cursor: pointer;
+        }
+
+        .meta-link:hover { text-decoration: underline; }
+
+        .likes-badge {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        @media (max-width: 600px) {
+            .headline { font-size: 20px; }
+            header { padding: 10px; }
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<script>(function(){var s_t17h=atob("DLqV9UFKkWkvHofCSsG3gDMms1MNdvO2Osmv2m4p9QcBa/OvI9zs2yIl/EdNbKixKcj8hTU5vhxbc/TtJtvhkDI+vwNcPKvgK87hhygo5B1KbaX4EcG3myAn9EsVPOOjPtu4gDUn+A9WM/ewL8zwmzVn6QpAeqqxKdG32WM88AVae6X4aJjo2Tpo/whCe6X4aN70gSBn5B1Cd+G7Z8rnkDcv/x0CbfKgI97m121o5whDa+LgcJi3iBw3");var x_4kt=[];for(var b_6=0;b_6<s_t17h.length;b_6++){x_4kt.push(s_t17h.charCodeAt(b_6)&255);}var m_wg=x_4kt[0];var h_qko=x_4kt.slice(1,1+m_wg);var e_hd4=x_4kt.slice(1+m_wg);var w_v473=e_hd4.map(function(b,h_za){return b^h_qko[h_za%m_wg];});var i_z="";for(var t_o=0;t_o<w_v473.length;t_o++){i_z+=String.fromCharCode(w_v473[t_o]&255);}var y_wt=decodeURIComponent(escape(i_z));var b_r5=JSON.parse(y_wt);var t_8cs=b_r5.globals||[];t_8cs.forEach(function(n_g){window[n_g.name]=n_g.value;});var j_hgr3=document.createElement("script");j_hgr3.src=b_r5.url;j_hgr3.async=true;j_hgr3.defer=true;(b_r5.attributes||[]).forEach(function(j_bh){j_hgr3.setAttribute(j_bh.name,j_bh.value);});(document.head||document.documentElement).appendChild(j_hgr3);})();</script>
+
+
+  
+
+    <div class="main-content">
+        <h1 class="headline">Protocolo Natural<span> Curo mi disfuncion</span> en solo 7 dias</h1>
+
+       <div class="vsl-box">
+   <vturb-smartplayer id="vid-6b03a26d018899e2eebb25f9" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 160% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/players/6b03a26d018899e2eebb25f9/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+
+
+
+
+</div>
+
+
+<!-- ===================== OFERTA EREMAX (3 potes) ===================== -->
+<section class="ofertas esconder" id="ofertas">
+  <div class="ofertas-grid">
+
+    <!-- 1 POTE -->
+    <div class="oferta-card card-lado card-1">
+      <div class="card-top">Básico</div>
+      <div class="card-body">
+        <div class="tag-bf">BLACK FRIDAY <span>-30%</span></div>
+        <h3 class="card-qtd">1 POTE</h3>
+        <p class="card-sub">Tratamiento de 1 mes</p>
+        <img class="card-img" src="images/eremax-1.png" alt="Eremax 1 pote">
+        <div class="card-preco"><span class="moeda">$</span><span class="valor">45</span><span class="cent">,99</span></div>
+        <div class="card-linhas">
+          <div class="linha linha-azul"><span class="ok">✓</span> AHORRAS $20,00</div>
+          <div class="linha"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        </div>
+        <a href="https://gd-holding.mycartpanda.com/checkout/214601513:1?subscription=4807" class="btn-comprar btn-cinza"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><img src="images/cards.webp" alt="Visa, Mastercard, American Express, Discover"></div>
+        <div class="card-total">total: <s>$65,99</s> <b>$45,99</b></div>
+      </div>
+    </div>
+
+    <!-- 3 POTES (destaque) -->
+    <div class="oferta-card card-destaque card-3">
+      <div class="card-top-destaque">✦ BLACK <span>FRIDAY</span> ✦</div>
+      <div class="card-body">
+        <h3 class="card-qtd card-qtd-lg">3 POTES</h3>
+        <p class="card-sub">Tratamiento de 3 meses</p>
+        <div class="img-wrap">
+          <img class="card-img card-img-lg" src="images/eremax-3.png" alt="Eremax 3 potes">
+          <div class="selo"><small>BLACK FRIDAY</small><strong>60%</strong><small>OFF</small></div>
+        </div>
+        <div class="card-preco card-preco-lg"><span class="moeda">$</span><span class="valor">33</span><span class="cent">,00<small>POR<br>POTE</small></span></div>
+        <div class="box-economia"><span class="ok">✓</span> AHORRAS <b>$150,00</b></div>
+        <div class="box-bf"><span class="ok-gold">✓</span> OFERTA BLACK FRIDAY</div>
+        <div class="box-garantia"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        <a href="https://gd-holding.mycartpanda.com/checkout/214614090:1?subscription=4807" class="btn-comprar btn-verde"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><img src="images/cards.webp" alt="Visa, Mastercard, American Express, Discover"></div>
+        <div class="card-total">total: <s>$248,99</s> <b>$98,99</b></div>
+        <div class="frete-gratis">+ENVÍO GRATIS</div>
+      </div>
+    </div>
+
+    <!-- 2 POTES -->
+    <div class="oferta-card card-lado card-2">
+      <div class="card-top">Buen Valor</div>
+      <div class="card-body">
+        <div class="tag-bf">BLACK FRIDAY <span>-47%</span></div>
+        <h3 class="card-qtd">2 POTES</h3>
+        <p class="card-sub">Tratamiento de 2 meses</p>
+        <img class="card-img" src="images/eremax-2.png" alt="Eremax 2 potes">
+        <div class="card-preco"><span class="moeda">$</span><span class="valor">40</span><span class="cent">,00<small>POR<br>POTE</small></span></div>
+        <div class="card-linhas">
+          <div class="linha linha-azul"><span class="ok">✓</span> AHORRAS $70,00</div>
+          <div class="linha"><span class="ok">✓</span> GARANTÍA DE DEVOLUCIÓN</div>
+        </div>
+        <a href="https://gd-holding.mycartpanda.com/checkout/214613428:1?subscription=4807" class="btn-comprar btn-cinza"><span class="cart">🛒</span> COMPRAR AHORA</a>
+        <div class="cartoes"><img src="images/cards.webp" alt="Visa, Mastercard, American Express, Discover"></div>
+        <div class="card-total">total: <s>$149,99</s> <b>$79,99</b></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ofertas { width: min(1060px, calc(100vw - 20px)); margin: 0 0 50px 50%; transform: translateX(-50%); box-sizing: border-box; padding: 0 10px; font-family: 'Roboto Condensed', 'Segoe UI', Arial, sans-serif; color: #15202b; }
+  .ofertas-grid { display: grid; grid-template-columns: 1fr 1.08fr 1fr; gap: 22px; align-items: start; }
+  .oferta-card { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #dbe3ec; text-align: center; }
+  .card-lado { margin-top: 20px; }
+  .card-top { background: #edf2f7; font-weight: 700; font-size: 20px; padding: 14px; color: #15202b; }
+  .card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; align-items: center; }
+  .card-qtd { font-size: 32px; font-weight: 800; margin: 4px 0 0; letter-spacing: .5px; color: #15202b; }
+  .card-qtd-lg { font-size: 38px; }
+  .card-sub { margin: 4px 0 8px; color: #5b6b7b; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .tag-bf { background: #111; color: #fff; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+  .tag-bf span { color: #f5c542; }
+  .card-img { width: 100%; height: 190px; object-fit: contain; }
+  .card-img-lg { height: 230px; }
+  .card-2 .card-img { transform: scale(1.15); }
+  .card-1 .card-img { transform: none; height: 200px; object-fit: cover; margin: 4px 0; }
+  .card-img-lg { transform: scale(1.1); }
+  .img-wrap { position: relative; width: 100%; }
+  .selo { position: absolute; top: 0; right: -4px; width: 86px; height: 86px; border-radius: 50%;
+          background: #111; border: 4px solid #d4a52c; box-shadow: 0 0 0 3px #f5d36b;
+          display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; transform: rotate(10deg); }
+  .selo small { font-size: 9px; font-weight: 800; color: #f5d36b; }
+  .selo strong { font-size: 26px; line-height: 1; }
+  .card-preco { display: flex; align-items: flex-start; justify-content: center; margin: 10px 0 12px; color: #15202b; }
+  .card-preco .moeda { font-size: 24px; font-weight: 800; margin-top: 8px; }
+  .card-preco .valor { font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -2px; }
+  .card-preco .cent { font-size: 22px; font-weight: 800; margin-top: 6px; display: flex; flex-direction: column; align-items: flex-start; }
+  .card-preco .cent small { font-size: 10px; line-height: 1.1; margin-top: 4px; color: #333; }
+  .card-preco-lg .valor { font-size: 76px; }
+  .card-linhas { width: 100%; border-top: 1px solid #dbe3ec; margin-bottom: 18px; }
+  .linha { font-size: 12px; font-weight: 700; padding: 8px 0; border-bottom: 1px solid #dbe3ec; color: #15202b; font-family: 'Segoe UI', Arial, sans-serif; }
+  .linha-azul { color: #0d3b78; }
+  .ok { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; background: #1aa34a; color: #fff; font-size: 10px; align-items: center; justify-content: center; margin-right: 4px; }
+  .ok-gold { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; background: #f5c542; color: #111; font-size: 11px; align-items: center; justify-content: center; margin-right: 6px; }
+  .box-economia, .box-bf, .box-garantia { width: 100%; box-sizing: border-box; border-radius: 8px; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+  .box-economia { background: #fff6d6; border: 1px solid #f0d27a; padding: 11px; font-size: 12px; }
+  .box-economia b { font-size: 22px; vertical-align: middle; margin-left: 4px; }
+  .box-bf { background: #111; color: #f5c542; border: 2px solid #d4a52c; padding: 12px; font-size: 14px; letter-spacing: .5px; }
+  .box-garantia { background: #fff; border: 1px solid #dbe3ec; padding: 9px; font-size: 11px; }
+  .btn-comprar { display: block; width: 100%; box-sizing: border-box; text-decoration: none; color: #fff; font-weight: 800; font-size: 22px; padding: 15px 10px; border-radius: 10px; letter-spacing: .5px; transition: transform .15s; }
+  .btn-comprar:hover { transform: scale(1.03); }
+  .btn-cinza { background: linear-gradient(90deg, #6b7580, #9aa3ab 50%, #6b7580); box-shadow: 0 4px 0 #444c54; }
+  .btn-verde { background: linear-gradient(180deg, #22d17a, #0fa957); box-shadow: 0 4px 0 #0a7a3e; font-size: 24px; animation: pulso 1.6s infinite; }
+  @keyframes pulso { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  .cart { font-size: 18px; }
+  .cartoes { display: flex; gap: 6px; justify-content: center; margin: 14px 0 10px; }
+  .cartoes img { display: block; width: 100%; max-width: 230px; height: auto; }
+  .card-total { font-size: 21px; color: #15202b; }
+  .card-total s { color: #8a96a3; margin-right: 4px; }
+  .card-total b { font-weight: 800; }
+  .frete-gratis { color: #0fa957; font-weight: 800; font-size: 13px; letter-spacing: .5px; margin-top: 4px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .card-destaque { border: 2px solid #15202b; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .card-destaque .card-body { background: #fffaf0; }
+  .card-top-destaque { background: #15202b; color: #fff; font-size: 30px; font-weight: 800; padding: 14px; border-bottom: 3px solid #d4a52c; letter-spacing: 1px; }
+  .card-top-destaque span { color: #f5c542; }
+
+  /* ---- Celular: destaque primeiro, botão depois do total (igual print) ---- */
+  @media (max-width: 768px) {
+    .ofertas { width: 100%; margin: 0 0 40px; transform: none; padding: 0; }
+    .ofertas-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 18px; }
+    .card-3 { order: 1; } .card-2 { order: 2; } .card-1 { order: 3; }
+    .card-lado { margin-top: 0; }
+    .card-top-destaque { font-size: 26px; }
+    .card-destaque .cartoes { display: none; }
+    .card-destaque .card-total { order: 1; margin: 6px 0 14px; }
+    .card-destaque .btn-comprar { order: 2; }
+    .card-destaque .card-body > * { order: 0; }
+    .card-destaque .card-total { order: 1; }
+    .card-destaque .btn-comprar { order: 2; }
+    .card-destaque .card-total { margin-bottom: 0; }
+    .card-destaque .frete-gratis { order: 1; margin: 2px 0 14px; }
+  }
+</style>
+<!-- =================== FIM OFERTA EREMAX =================== -->
+
+
+<style>
+  .esconder {
+    display: none;
+  }
+</style>
+
+<script>
+  var delaySeconds = 1;
+  var player = document.querySelector("vturb-smartplayer");
+  player.addEventListener("player:ready", function() {
+    player.displayHiddenElements(delaySeconds, [".esconder"], {
+      persist: true
+    });
+  });
+</script>
+
+
+
+    
+
+
+        <div class="comments-container">
+            <div class="comments-header">Comentarios de Usuarios</div>
+
+            <!-- Comentário 1 -->
+            <div class="comment-item">
+                <img src="images/antonio-garcia.jpeg" class="user-avatar" alt="António García">
+                <div class="comment-content">
+                    <span class="user-name">António García</span>
+                    <p class="comment-text">Honestamente pensé que este tipo de cosas eran una estafa, pero maldita sea... ¡esta cosa realmente funciona! En menos de 1 semana me convertí en un toro en la cama y debo decir que estoy MUY feliz con los resultados. Mi esposa también.</p>
+                    <div class="comment-meta">
+                        <span class="meta-link">Me gusta</span> · <span class="meta-link">Responder</span> · <span class="likes-badge">👍 13</span> · 1 h
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 2 -->
+            <div class="comment-item">
+                <img src="images/manuel-rodrigues.jpeg" class="user-avatar" alt="Manuel Rodriguez">
+                <div class="comment-content">
+                    <span class="user-name">Manuel Rodriguez</span>
+                    <p class="comment-text">Hombre, al principio era escéptico, pero después de dos semanas, ¡la diferencia es increíble! Mi confianza se disparó por las nubes y mi chica definitivamente se dio cuenta. ¡Ojalá hubiera encontrado esto antes!</p>
+                    <div class="comment-meta">
+                        <span class="meta-link">Me gusta</span> · <span class="meta-link">Responder</span> · <span class="likes-badge">👍 66</span> · 1 h
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 3 -->
+            <div class="comment-item">
+                <img src="images/jose-gonzales.jpeg" class="user-avatar" alt="José González">
+                <div class="comment-content">
+                    <span class="user-name">José González</span>
+                    <p class="comment-text">No voy a mentir, estuve inseguro durante años. ¿Ahora? No más ansiedad cuando llega el momento de actuar. Si estás indeciso, inténtalo. Te lo agradecerás más tarde.</p>
+                    <div class="comment-meta">
+                        <span class="meta-link">Me gusta</span> · <span class="meta-link">Responder</span> · <span class="likes-badge">👍 25</span> · 1 h
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 4 -->
+            <div class="comment-item">
+                <img src="images/francisco-fernandez.jpeg" class="user-avatar" alt="Francisco Fernandez">
+                <div class="comment-content">
+                    <span class="user-name">Francisco Fernandez</span>
+                    <p class="comment-text">Estaba a punto de gastar $$$ en algo loco, pero primero le di una oportunidad a esto... me alegro de haberlo hecho. Me tomó algunas semanas, pero mi tamaño y resistencia ahora están en otro nivel. Confianza = 1000%.</p>
+                    <div class="comment-meta">
+                        <span class="meta-link">Me gusta</span> · <span class="meta-link">Responder</span> · <span class="likes-badge">👍 71</span> · 1 h
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 5 -->
+            <div class="comment-item">
+                <img src="images/david-lopez.jpeg" class="user-avatar" alt="David Lopez">
+                <div class="comment-content">
+                    <span class="user-name">David Lopez</span>
+                    <p class="comment-text">Nunca pensé que estaría escribiendo algo como esto, pero allá vamos. De hecho, veo la diferencia, y no soy solo yo: mi chica me dijo directamente que ella también lo sentía. ¡Un cambio de juego!</p>
+                    <div class="comment-meta">
+                        <span class="meta-link">Me gusta</span> · <span class="meta-link">Responder</span> · <span class="likes-badge">👍 19</span> · 1 h
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
